@@ -9,7 +9,7 @@ import java.util.Scanner;
  * @author Aayush Bagrecha
  * @author Yash Shrikant
  * 
- * @version v1
+ * @version 1.0
  * 
  */
 public class WorldTest extends TestCase {
@@ -50,7 +50,7 @@ public class WorldTest extends TestCase {
      */
     public static void testFilterKeywordsTrueCase() {
         String inputLine = "java programming  python   code";
-        String[] expectedKeywords = { "java", "programming", "python", "code" };
+        String[] expectedKeywords = { "java", "programming", "python", "code"};
         String[] result = World.filterKeywords(inputLine);
 
         assertArrayEquals(expectedKeywords, result);
@@ -127,7 +127,8 @@ public class WorldTest extends TestCase {
     public void testAddAndInsertSeminarSuccess() throws Exception {
         // Create a sample Scanner with seminar data
         String seminarData =
-            "1\nSeminar Title\n2023-09-24\n60\n5\n5\n100\nKeyword1, Keyword2\nSeminar Description";
+            "1\nSeminar Title\n2023-09-24\n60\n5\n5\n100\nKeyword1,"
+            + " Keyword2\nSeminar Description";
         Scanner scanner = new Scanner(seminarData);
 
         // Call the addAndInsertSeminar method
@@ -139,4 +140,6 @@ public class WorldTest extends TestCase {
             "Seminar Title", "2023-09-24", 60, (short)5, (short)5, 100,
             new String[] { "Keyword1", "Keyword2" }, "Seminar Description"))));
     }
+    
+    
 }

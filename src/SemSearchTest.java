@@ -6,7 +6,7 @@ import student.TestCase;
  * @author Aayush Bagrecha
  * @author Yash Shrikant
  * 
- * @version v1
+ * @version 1.0
  */
 public class SemSearchTest extends TestCase {
     /**

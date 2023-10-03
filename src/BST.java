@@ -109,12 +109,33 @@ class KVPair<K extends Comparable<K>, E> implements Comparable<KVPair<K, E>> {
  *            The type of the key, which must extend Comparable.
  * @param <V>
  *            The type of the value.
+ *            
+ * @author Aayush Bagrecha
+ * @author Yash Shrikant
+ *            
+ * @version 1.0           
  */
 class GenericBST<K extends Comparable<K>, V> {
     // Inner class representing a node in the BST
+    /**
+     * Represents a node in the Binary Search Tree (BST).
+     * Each node holds a key-value pair and references to its left and right children.
+     *
+     * @param <K> The key type.
+     * @param <V> The value type.
+     */
     protected class Node {
+        /**
+         * The key-value pair stored in the node.
+         */
         KVPair<K, V> data;
+        /**
+         * Reference to the left child node.
+         */
         protected Node left;
+        /**
+         * Reference to the right child node.
+         */
         protected Node right;
 
         /**
@@ -129,7 +150,10 @@ class GenericBST<K extends Comparable<K>, V> {
             right = null;
         }
     }
-
+    /**
+     * The root node of the Binary Search Tree (BST).
+     * It represents the starting point of the tree structure, from which all other nodes are descended.
+     */
     protected Node root;
     private int nodeCount; // To keep track of the number of nodes
 
@@ -153,13 +177,20 @@ class GenericBST<K extends Comparable<K>, V> {
         nodeCount++; // Increment nodeCount when a new node is inserted
     }
 
-
+    /**
+     * Recursively inserts a new key-value pair into the Binary Search Tree (BST) rooted at the given node.
+     *
+     * @param root The root node of the BST where the new data will be inserted.
+     * @param data The key-value pair to be inserted into the BST.
+     * @return The updated root node of the BST after insertion.
+     */
     private Node inserthelp(Node root, KVPair<K, V> data) {
+        // If the current node is null, create a new node with the given data and return it
         if (root == null) {
             root = new Node(data);
             return root;
         }
-
+     // Compare the data with the current node's data and insert accordingly
         if (data.compareTo(root.data) <= 0) {
             root.left = inserthelp(root.left, data);
         }
@@ -182,8 +213,16 @@ class GenericBST<K extends Comparable<K>, V> {
         return findhelp(root, data);
     }
 
-
+    /**
+     * Recursively finds a key-value pair with the given key in the Binary Search Tree (BST)
+     * rooted at the specified node.
+     *
+     * @param root The root node of the BST where the search will be performed.
+     * @param data The key-value pair to be searched for in the BST.
+     * @return The key-value pair found in the BST, or null if not found.
+     */
     private KVPair<K, V> findhelp(Node root, KVPair<K, V> data) {
+     // If the current node is null, the data is not found in the BST
         if (root == null)
             return null;
 
@@ -201,8 +240,7 @@ class GenericBST<K extends Comparable<K>, V> {
     /**
      * Checks if the binary search tree contains a given key.
      *
-     * @param key
-     *            The key to check for.
+     * @param key   The key to check for.
      * @return True if the key is found in the tree, false otherwise.
      */
     public boolean contains(KVPair<K, V> data) {
@@ -312,7 +350,16 @@ class GenericBST<K extends Comparable<K>, V> {
 
 
 
-
+/**
+ * Represents a Binary Search Tree (BST) specialized for storing Seminar objects
+ * sorted by their associated ID.
+ * 
+ * @author Aayush Bagrecha
+ * @author Yash Shrikant
+ * 
+ * @version 1.0
+ * 
+ */
 class IDBST extends GenericBST<Integer, Seminar> {
 
     /**
@@ -356,7 +403,12 @@ class IDBST extends GenericBST<Integer, Seminar> {
         return size();
     }
 
-
+    /**
+     * Prints the contents of the ID Binary Search Tree (BST).
+     * This method displays the ID tree by calling the 
+     * {@link #printTree()} method,
+     * providing an overview of the seminars sorted by their IDs.
+     */
     public void printIDTree() {
         System.out.println("ID Tree:");
         printTree();
@@ -409,7 +461,16 @@ class IDBST extends GenericBST<Integer, Seminar> {
 
 
 
-
+/**
+ * Represents a Binary Search Tree (BST) specialized for storing Seminar objects
+ * sorted by their associated cost.
+ * 
+ * @author Aayush Bagrecha
+ * @author Yash Shrikant
+ * 
+ * @version 1.0
+ * 
+ */
 class CostBST extends GenericBST<Integer, Seminar> {
 
     /**
@@ -444,13 +505,25 @@ class CostBST extends GenericBST<Integer, Seminar> {
         return size();
     }
 
-
+    /**
+     * Prints the contents of the Cost Binary Search Tree (BST).
+     * This method displays the cost tree by calling the 
+     * {@link #printTree()} method,
+     * providing an overview of the seminars sorted by cost.
+     */
     public void printCostTree() {
         System.out.println("Cost Tree:");
         printTree();
     }
 
-
+    /**
+     * Searches for seminars within a specified cost range.
+     *
+     * @param cost1 The lower bound of the cost range.
+     * @param cost2 The upper bound of the cost range.
+     * @return The Seminar object if found within the 
+     * cost range, or null if not found.
+     */
     public Seminar searchByCost(int cost1, int cost2) {
         return searchByCost(root, cost1, cost2);
     }
@@ -487,7 +560,14 @@ class CostBST extends GenericBST<Integer, Seminar> {
 
 
 
-
+/**
+ * Represents a Binary Search Tree (BST) specialized for storing Seminar objects
+ * sorted by their associated date.
+ * @author Aayush Bagrecha
+ * @author Yash Shrikant
+ * 
+ * @version 1.0
+ */
 class DateBST extends GenericBST<String, Seminar> {
 
     /**
@@ -525,13 +605,23 @@ class DateBST extends GenericBST<String, Seminar> {
         return size();
     }
 
-
+    /**
+     * Prints the contents of the Date Binary Search Tree (BST).
+     * This method displays the date tree by calling the {@link #printTree()} method,
+     * providing an overview of the seminars sorted by date.
+     */
     public void printDateTree() {
         System.out.println("Date Tree:");
         printTree();
     }
 
-
+    /**
+     * Searches for seminars within a specified date range.
+     *
+     * @param date1 The start date of the date range.
+     * @param date2 The end date of the date range.
+     * @return The Seminar object if found within the date range, or null if not found.
+     */
     public Seminar searchByDate(String date1, String date2) {
         return searchByDate(root, date1, date2);
     }
@@ -570,7 +660,14 @@ class DateBST extends GenericBST<String, Seminar> {
 
 
 
-
+/**
+ * Represents a Binary Search Tree (BST) specialized for storing Seminar objects
+ * sorted by their associated keywords.
+ * @author Aayush Bagrecha
+ * @author Yash Shrikant
+ * 
+ * @version 1.0
+ */
 class KeywordsBST extends GenericBST<String, Seminar> {
 
     /**
@@ -609,7 +706,11 @@ class KeywordsBST extends GenericBST<String, Seminar> {
         return size();
     }
 
-
+    /**
+     * Prints the contents of the Keyword Binary Search Tree (BST).
+     * This method displays the keywords tree by calling the {@link #printTree()} method,
+     * providing an overview of the seminars sorted by keywords.
+     */
     public void printKeywordsTree() {
         System.out.println("Keyword Tree:");
         printTree();

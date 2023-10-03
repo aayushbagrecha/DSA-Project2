@@ -20,6 +20,12 @@
 // anything during the discussion or modifies any computer file
 // during the discussion. I have violated neither the spirit nor
 // letter of this restriction.
+//
+//    @author Aayush Bagrecha
+//    @author Yash Shrikant
+//    @version 1.0
+//
+//
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -154,7 +160,7 @@ public class SemSearch {
 
                 switch (operation) {
                     case "insert":
-                        world.addAndInsertSeminar(scanner, idBST, costBST,
+                        world.addAndInsertSeminar(scanner, idBST, costBST,     
                             dateBST, keywordsBST);
                         break;
 
@@ -198,6 +204,7 @@ public class SemSearch {
                                 world.printCost(costBST);
                                 break;
                         }
+                        break;
                     case "delete":
                         world.delete(scanner, idBST);
                         break;
