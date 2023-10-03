@@ -14,7 +14,6 @@ public class BSTTest {
     private CostBST costBST;
     private DateBST dateBST;
     private KeywordsBST keywordsBST;
-    
 
     @Before
     public void setUp1() {
@@ -23,6 +22,7 @@ public class BSTTest {
         dateBST = new DateBST();
         keywordsBST = new KeywordsBST();
     }
+
 
     @Test
     public void testIDBSTInsertionAndSearch() {
@@ -179,35 +179,40 @@ public class BSTTest {
         assertNull(result3);
     }
 
-     @Test
-     public void testSearchByCost() {
-     CostBST bst = new CostBST();
-    
-     // Creating sample seminars
-     Seminar seminar1 = new Seminar(1, "Seminar 1", "2023-10-10", 2, (short) 10,
-     (short) 20, 50, new String[]{"keyword1"}, "Description 1");
-     Seminar seminar2 = new Seminar(2, "Seminar 2", "2023-10-12", 3, (short) 15,
-     (short) 25, 70, new String[]{"keyword2"}, "Description 2");
-     Seminar seminar3 = new Seminar(3, "Seminar 3", "2023-10-14", 1, (short) 5,
-     (short) 15, 40, new String[]{"keyword3"}, "Description 3");
-    
-     // Inserting seminars into the BST
-     bst.insertSeminar(1, seminar1);
-     bst.insertSeminar(2, seminar2);
-     bst.insertSeminar(3, seminar3);
-    
-     // Testing search by cost
-     Seminar result1 = bst.searchByCost(40, 60);
-     assertNotNull(result1);
-     assertEquals(seminar1, result1);
-    
-     Seminar result2 = bst.searchByCost(60, 80);
-     assertNotNull(result2);
-     assertEquals(seminar2, result2);
-    
-     Seminar result3 = bst.searchByCost(30, 50);
-     assertNull(result3);
-     }
+
+    @Test
+    public void testSearchByCost() {
+        CostBST bst = new CostBST();
+
+        // Creating sample seminars
+        Seminar seminar1 = new Seminar(1, "Seminar 1", "2023-10-10", 2,
+            (short)10, (short)20, 50, new String[] { "keyword1" },
+            "Description 1");
+        Seminar seminar2 = new Seminar(2, "Seminar 2", "2023-10-12", 3,
+            (short)15, (short)25, 70, new String[] { "keyword2" },
+            "Description 2");
+        Seminar seminar3 = new Seminar(3, "Seminar 3", "2023-10-14", 1,
+            (short)5, (short)15, 40, new String[] { "keyword3" },
+            "Description 3");
+
+        // Inserting seminars into the BST
+        bst.insertSeminar(1, seminar1);
+        bst.insertSeminar(2, seminar2);
+        bst.insertSeminar(3, seminar3);
+
+        // Testing search by cost
+        Seminar result1 = bst.searchByCost(40, 60);
+        assertNotNull(result1);
+        assertEquals(seminar1, result1);
+
+        Seminar result2 = bst.searchByCost(60, 80);
+        assertNotNull(result2);
+        assertEquals(seminar2, result2);
+
+        Seminar result3 = bst.searchByCost(30, 50);
+        assertNull(result3);
+    }
+
 
     @Test
     public void testSearchByDate() {

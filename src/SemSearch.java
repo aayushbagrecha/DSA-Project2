@@ -198,10 +198,12 @@ public class SemSearch {
                                 world.printCost(costBST);
                                 break;
                         }
+                    case "delete":
+                        world.delete(scanner, idBST);
                         break;
 
                     default:
-//                        System.err.println("Unknown operation: " + operation);
+                        System.err.println("Unknown operation: " + operation);
                         scanner.nextLine();
                         break;
                 }

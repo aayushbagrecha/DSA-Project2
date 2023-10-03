@@ -9,8 +9,7 @@
  * @author Aayush Bagrecha
  * @author Yash Shrikant
  * 
- * @version v1
- * @version v1
+ * @version 1.0
  */
 class KVPair<K extends Comparable<K>, E> implements Comparable<KVPair<K, E>> {
 
@@ -38,6 +37,28 @@ class KVPair<K extends Comparable<K>, E> implements Comparable<KVPair<K, E>> {
      */
     public K getKey() {
         return theKey;
+    }
+
+
+    /**
+     * Sets the key.
+     *
+     * @param key
+     *            the key
+     */
+    public void setTheKey(K key) {
+        this.theKey = key;
+    }
+
+
+    /**
+     * Sets the val.
+     *
+     * @param val
+     *            the val
+     */
+    public void setTheVal(E val) {
+        this.theVal = val;
     }
 
 
@@ -225,6 +246,68 @@ class GenericBST<K extends Comparable<K>, V> {
         System.out.println(prefix + node.data.getKey());
         printTreeUtil(node.left, prefix + "  ");
     }
+
+
+    /**
+     * Remove the node from the tree
+     *
+     * @param data
+     *            the data
+     */
+    public void remove(KVPair data) {
+        root = deletehelp(root, (K)data.getKey());
+        nodeCount--;
+    }
+
+
+    private Node deletehelp(Node node, K key) {
+        if (node == null) {
+            return null; // Key not found
+        }
+
+        int cmp = key.compareTo(node.data.getKey());
+        if (cmp < 0) {
+            node.left = deletehelp(node.left, key);
+        }
+        else if (cmp > 0) {
+            node.right = deletehelp(node.right, key);
+        }
+        else {
+            // Key found, delete the node
+            if (node.left == null) {
+                return node.right;
+            }
+            else if (node.right == null) {
+                return node.left;
+            }
+            else {
+                Node temp = getMax(node.left);
+                node.data.setTheKey(temp.data.getKey());
+                node.data.setTheVal(temp.data.getValue());
+                node.left = deletemax(node.left);
+            }
+        }
+
+        return node;
+    }
+
+
+    private Node getMax(Node node) {
+        if (node.right == null) {
+            return node;
+        }
+        return getMax(node.right);
+    }
+
+
+    private Node deletemax(Node node) {
+        if (node.right == null) {
+            return node.left;
+        }
+        node.right = deletemax(node.right);
+        return node;
+    }
+
 }
 
 
@@ -302,7 +385,26 @@ class IDBST extends GenericBST<Integer, Seminar> {
             return null;
         }
     }
-       
+
+
+    /**
+     * Delete.
+     *
+     * @param id
+     *            the id
+     */
+    public void delete(int id) {
+        KVPair<Integer, Seminar> data = new KVPair<>(id, null);
+        if (contains(data)) {
+            System.out.println("Record with ID " + id
+                + " successfully deleted from the database");
+            remove(data);
+        }
+        else
+            System.out.println("Delete FAILED -- There is no record with ID "
+                + id);
+    }
+
 }
 
 
@@ -347,10 +449,12 @@ class CostBST extends GenericBST<Integer, Seminar> {
         System.out.println("Cost Tree:");
         printTree();
     }
-    
+
+
     public Seminar searchByCost(int cost1, int cost2) {
         return searchByCost(root, cost1, cost2);
     }
+
 
     private Seminar searchByCost(Node node, int cost1, int cost2) {
         if (node == null) {
@@ -358,23 +462,30 @@ class CostBST extends GenericBST<Integer, Seminar> {
         }
 
         int nodeCost = node.data.getKey();
-        
+
         if (nodeCost >= cost1 && nodeCost <= cost2) {
             // The current node's cost is within the specified range
-            System.out.println("Found seminar with cost between " + cost1 + " and " + cost2 + ":");
+            System.out.println("Found seminar with cost between " + cost1
+                + " and " + cost2 + ":");
             System.out.println(node.data.getValue());
             return node.data.getValue();
-        } else if (nodeCost > cost2) {
-            // The current node's cost is greater than the upper bound of the range,
+        }
+        else if (nodeCost > cost2) {
+            // The current node's cost is greater than the upper bound of the
+            // range,
             // search in the left subtree
             return searchByCost(node.left, cost1, cost2);
-        } else {
-            // The current node's cost is less than the lower bound of the range,
+        }
+        else {
+            // The current node's cost is less than the lower bound of the
+            // range,
             // search in the right subtree
             return searchByCost(node.right, cost1, cost2);
         }
     }
 }
+
+
 
 
 class DateBST extends GenericBST<String, Seminar> {
@@ -419,10 +530,12 @@ class DateBST extends GenericBST<String, Seminar> {
         System.out.println("Date Tree:");
         printTree();
     }
-    
+
+
     public Seminar searchByDate(String date1, String date2) {
         return searchByDate(root, date1, date2);
     }
+
 
     private Seminar searchByDate(Node node, String date1, String date2) {
         if (node == null) {
@@ -434,21 +547,25 @@ class DateBST extends GenericBST<String, Seminar> {
         // Compare strings using compareTo method
         if (nodeDate.compareTo(date1) >= 0 && nodeDate.compareTo(date2) <= 0) {
             // The current node's date is within the specified range
-            System.out.println("Found seminar with date between " + date1 + " and " + date2 + ":");
+            System.out.println("Found seminar with date between " + date1
+                + " and " + date2 + ":");
             System.out.println(node.data.getValue());
             return node.data.getValue();
-        } else if (nodeDate.compareTo(date2) > 0) {
-            // The current node's date is greater than the upper bound of the range,
+        }
+        else if (nodeDate.compareTo(date2) > 0) {
+            // The current node's date is greater than the upper bound of the
+            // range,
             // search in the left subtree
             return searchByDate(node.left, date1, date2);
-        } else {
-            // The current node's date is less than the lower bound of the range,
+        }
+        else {
+            // The current node's date is less than the lower bound of the
+            // range,
             // search in the right subtree
             return searchByDate(node.right, date1, date2);
         }
     }
 
-    
 }
 
 
@@ -482,8 +599,6 @@ class KeywordsBST extends GenericBST<String, Seminar> {
         }
     }
 
-    
-    
 
     /**
      * Get the count of records in the IDBST.
@@ -499,9 +614,8 @@ class KeywordsBST extends GenericBST<String, Seminar> {
         System.out.println("Keyword Tree:");
         printTree();
     }
-    
-    
-    
+
+
     /**
      * Search for a seminar by its keyword.
      *
@@ -514,15 +628,16 @@ class KeywordsBST extends GenericBST<String, Seminar> {
         KVPair<String, Seminar> result = find(data);
         if (result != null) {
             Seminar foundSeminar = result.getValue();
-            System.out.println("Found record with keyword " + keywordValue + ":");
+            System.out.println("Found record with keyword " + keywordValue
+                + ":");
             System.out.println(foundSeminar);
             return foundSeminar;
         }
         else {
-            System.out.println("Search FAILED -- There is no record with keyword "
-                + keywordValue);
+            System.out.println(
+                "Search FAILED -- There is no record with keyword "
+                    + keywordValue);
             return null;
         }
     }
 }
-

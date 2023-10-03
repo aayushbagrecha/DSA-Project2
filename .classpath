@@ -6,6 +6,6 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/hp/Downloads/F23P2starter1/F23P2starter1/lib/student.jar"/>
+	<classpathentry kind="lib" path="C:/Users/hp/Downloads/F23P2starter1/lib/student.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

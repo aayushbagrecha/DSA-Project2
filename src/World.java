@@ -1,7 +1,6 @@
 import java.util.Arrays;
 import java.util.Scanner;
 
-
 /**
  * The `World` class represents a
  * collection of seminars and provides
@@ -147,7 +146,7 @@ class World {
     public void searchSeminarKeyword(Scanner scanner) {
         String keywordValue = scanner.next().trim();
         KeywordsBST keywordsBST = new KeywordsBST();
-        //        System.out.println("Search keyword is: " + keywordValue);
+        // System.out.println("Search keyword is: " + keywordValue);
         keywordsBST.searchByKeyword(keywordValue);
     }
 
@@ -163,9 +162,9 @@ class World {
     public void searchSeminarCost(Scanner scanner, CostBST costBST) {
         int cost1 = Integer.parseInt(scanner.next().trim());
         int cost2 = Integer.parseInt(scanner.next().trim());
-//        System.out.println("Search cost 1 is: " + cost1);
-//        System.out.println("Search cost 2 is: " + cost2);
-        costBST.searchByCost(cost1,cost2);
+// System.out.println("Search cost 1 is: " + cost1);
+// System.out.println("Search cost 2 is: " + cost2);
+        costBST.searchByCost(cost1, cost2);
 
     }
 
@@ -181,9 +180,9 @@ class World {
     public void searchSeminarDate(Scanner scanner, DateBST dateBST) {
         String date1 = scanner.next().trim();
         String date2 = scanner.next().trim();
-//        System.out.println("Search date 1 is: " + date1);
-//        System.out.println("Search date 2 is: " + date2);
-        dateBST.searchByDate(date1,date2);
+// System.out.println("Search date 1 is: " + date1);
+// System.out.println("Search date 2 is: " + date2);
+        dateBST.searchByDate(date1, date2);
     }
 
 
@@ -241,4 +240,11 @@ class World {
 
         bst.printKeywordsTree();
     }
+
+
+    public void delete(Scanner scanner, IDBST bst) {
+        int id = Integer.parseInt(scanner.nextLine().trim());
+        bst.delete(id);
+    }
+
 }
