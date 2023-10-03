@@ -21,9 +21,9 @@
 // during the discussion. I have violated neither the spirit nor
 // letter of this restriction.
 //
-//    @author Aayush Bagrecha
-//    @author Yash Shrikant
-//    @version 1.0
+// @author Aayush Bagrecha
+// @author Yash Shrikant
+// @version 1.0
 //
 //
 
@@ -160,7 +160,7 @@ public class SemSearch {
 
                 switch (operation) {
                     case "insert":
-                        world.addAndInsertSeminar(scanner, idBST, costBST,     
+                        world.addAndInsertSeminar(scanner, idBST, costBST,
                             dateBST, keywordsBST);
                         break;
 
@@ -205,6 +205,7 @@ public class SemSearch {
                                 break;
                         }
                         break;
+
                     case "delete":
                         world.delete(scanner, idBST);
                         break;

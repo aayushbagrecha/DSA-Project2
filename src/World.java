@@ -241,12 +241,19 @@ class World {
         bst.printKeywordsTree();
     }
 
+
     /**
-     * Deletes a seminar from the ID Binary Search Tree (BST) based on the given ID.
+     * Deletes a seminar from the ID Binary Search Tree (BST) based on the given
+     * ID.
      *
-     * @param scanner The Scanner object used for input to read the ID of the seminar to be deleted.
-     * @param bst The IDBST object representing the Binary Search Tree from which the seminar will be deleted.
-     * @throws NumberFormatException If the input ID cannot be parsed as an integer.
+     * @param scanner
+     *            The Scanner object used for input to read the ID of the
+     *            seminar to be deleted.
+     * @param bst
+     *            The IDBST object representing the Binary Search Tree from
+     *            which the seminar will be deleted.
+     * @throws NumberFormatException
+     *             If the input ID cannot be parsed as an integer.
      */
     public void delete(Scanner scanner, IDBST bst) {
         int id = Integer.parseInt(scanner.nextLine().trim());

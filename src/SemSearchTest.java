@@ -40,19 +40,18 @@ public class SemSearchTest extends TestCase {
         assertEquals("", errorMessage);
     }
 
-
     /**
      * Check the validArgument parameter
      */
-//    public void testInvalidArgumentcount() {
-//        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-//        System.setErr(new PrintStream(outContent));
-//        String[] args = { "128", "SingleInput.txt" };
-//        SemSearch.main(args);
-//        String expectedOutput = "Please provide exactly two arguments"
-//            + " in the correct format.\n";
-//        assertEquals(expectedOutput, outContent.toString());
-//    }
+// public void testInvalidArgumentcount() {
+// ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+// System.setErr(new PrintStream(outContent));
+// String[] args = { "128", "SingleInput.txt" };
+// SemSearch.main(args);
+// String expectedOutput = "Please provide exactly two arguments"
+// + " in the correct format.\n";
+// assertEquals(expectedOutput, outContent.toString());
+// }
 
 
     /**
@@ -67,19 +66,18 @@ public class SemSearchTest extends TestCase {
         assertEquals(expectedOutput, outContent.toString());
     }
 
-
     /**
      * Check the validArgument parameter
      */
-//    public void testInvalidWorldSize() {
-//        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-//        System.setErr(new PrintStream(outContent));
-//        String[] args = { "not_an_integer", "P2Sample_input.txt" };
-//        SemSearch.main(args);
-//        String expectedOutput = "Invalid integer input."
-//            + " Please provide valid integer input.\n";
-//        assertEquals(expectedOutput, outContent.toString());
-//    }
+// public void testInvalidWorldSize() {
+// ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+// System.setErr(new PrintStream(outContent));
+// String[] args = { "not_an_integer", "P2Sample_input.txt" };
+// SemSearch.main(args);
+// String expectedOutput = "Invalid integer input."
+// + " Please provide valid integer input.\n";
+// assertEquals(expectedOutput, outContent.toString());
+// }
 
 
     /**
