@@ -70,6 +70,7 @@ class World {
         short x = Short.parseShort(scanner.next().trim());
         short y = Short.parseShort(scanner.next().trim());
         int cost = Integer.parseInt(scanner.next().trim());
+
         scanner.nextLine(); // Consume the newline
 
         String[] keywords = filterKeywords(scanner.nextLine());
@@ -162,8 +163,6 @@ class World {
     public void searchSeminarCost(Scanner scanner, CostBST costBST) {
         int cost1 = Integer.parseInt(scanner.next().trim());
         int cost2 = Integer.parseInt(scanner.next().trim());
-// System.out.println("Search cost 1 is: " + cost1);
-// System.out.println("Search cost 2 is: " + cost2);
         costBST.searchByCost(cost1, cost2);
 
     }

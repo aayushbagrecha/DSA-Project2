@@ -143,23 +143,51 @@ public class WorldTest extends TestCase {
     }
 
     @Test
-    public void testSearch(){
-
+    public void testSearch() throws Exception {
     }
     @Test
-    public void testPrint(){}
-
-    @Test
-    public void testDelete() throws Exception {
-        String seminarData =
-            "1\nSeminar Title\n2023-09-24\n60\n5\n5\n100\nKeyword1,"
-                + " Keyword2\nSeminar Description";
+    public void testPrint() throws Exception {
+        String seminarData = """
+            1
+            Seminar Title
+            2023-09-24
+            60
+            5
+            5
+            100
+            Keyword1 Keyword2
+            Seminar Description
+            """;
         Scanner scanner = new Scanner(seminarData);
 
         world.addAndInsertSeminar(scanner, idBST, costBST, dateBST,
             keywordsBST);
 
-//        world.delete(scanner,idBST,costBST,dateBST,keywordsBST);
+        world.printID(idBST);
+        world.printCost(costBST);
+        world.printDate(dateBST);
+        world.printKeywords(keywordsBST);
+    }
+
+    @Test
+    public void testDelete() throws Exception {
+        String seminarData = """
+            1
+            Seminar Title
+            2023-09-24
+            60
+            5
+            5
+            100
+            Keyword1 Keyword2
+            Seminar Description
+            1""";
+        Scanner scanner = new Scanner(seminarData);
+
+        world.addAndInsertSeminar(scanner, idBST, costBST, dateBST,
+            keywordsBST);
+
+        world.delete(scanner,idBST,costBST,dateBST,keywordsBST);
 
     }
     
