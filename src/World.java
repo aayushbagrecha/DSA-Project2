@@ -89,7 +89,7 @@ class World {
 
         // Insert seminar into all BSTs
         if (idBST.insertSeminar(id, seminar)) {
-            // inert only once when the insertBST is succesfull
+            // inert only once when the insertBST is successfull
             costBST.insertSeminar(cost, seminar);
             dateBST.insertSeminar(dateTime, seminar);
             keywordsBST.insertSeminar(seminar, keywords);
@@ -255,9 +255,13 @@ class World {
      * @throws NumberFormatException
      *             If the input ID cannot be parsed as an integer.
      */
-    public void delete(Scanner scanner, IDBST bst) {
+    public void delete(Scanner scanner, IDBST bst,CostBST cost, DateBST date, KeywordsBST keyword) {
         int id = Integer.parseInt(scanner.nextLine().trim());
+        Seminar record=bst.searchByID(id);
         bst.delete(id);
+        cost.delete(record.cost());
+        date.delete(record.date());
+        keyword.delete(record.keywords());
     }
 
 }

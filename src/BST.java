@@ -121,8 +121,6 @@ class GenericBST<K extends Comparable<K>, V> {
      * Represents a node in the Binary Search Tree (BST).
      * Each node holds a key-value pair and references to its left and right children.
      *
-     * @param <K> The key type.
-     * @param <V> The value type.
      */
     protected class Node {
         /**
@@ -240,7 +238,7 @@ class GenericBST<K extends Comparable<K>, V> {
     /**
      * Checks if the binary search tree contains a given key.
      *
-     * @param key   The key to check for.
+     * @param data   The key to check for.
      * @return True if the key is found in the tree, false otherwise.
      */
     public boolean contains(KVPair<K, V> data) {
@@ -447,6 +445,7 @@ class IDBST extends GenericBST<Integer, Seminar> {
      */
     public void delete(int id) {
         KVPair<Integer, Seminar> data = new KVPair<>(id, null);
+
         if (contains(data)) {
             System.out.println("Record with ID " + id
                 + " successfully deleted from the database");
@@ -556,6 +555,12 @@ class CostBST extends GenericBST<Integer, Seminar> {
             return searchByCost(node.right, cost1, cost2);
         }
     }
+    public void delete(int cost) {
+        KVPair<Integer, Seminar> data = new KVPair<>(cost, null);
+        if (contains(data)) {
+            remove(data);
+        }
+    }
 }
 
 
@@ -656,6 +661,13 @@ class DateBST extends GenericBST<String, Seminar> {
         }
     }
 
+    public void delete(String date) {
+        KVPair<String, Seminar> data = new KVPair<>(date, null);
+        if (contains(data)) {
+            remove(data);
+        }
+    }
+
 }
 
 
@@ -681,12 +693,9 @@ class KeywordsBST extends GenericBST<String, Seminar> {
     /**
      * Inserts a seminar with an ID into the tree.
      *
-     * @param id
      *            The ID of the seminar.
      * @param seminar
      *            The Seminar object to insert.
-     * @return True if the insertion was successful,
-     *         false if an ID collision occurred.
      */
     public void insertSeminar(Seminar seminar, String... ids) {
 
@@ -739,6 +748,15 @@ class KeywordsBST extends GenericBST<String, Seminar> {
                 "Search FAILED -- There is no record with keyword "
                     + keywordValue);
             return null;
+        }
+    }
+
+    public void delete(String[] keywords) {
+        for(String keyword:keywords){
+            KVPair<String, Seminar> data = new KVPair<>(keyword, null);
+            if (contains(data)) {
+                remove(data);
+            }
         }
     }
 }

@@ -1,3 +1,4 @@
+import org.junit.Test;
 import student.TestCase;
 import static org.junit.Assert.assertArrayEquals;
 import java.io.IOException;
@@ -139,6 +140,27 @@ public class WorldTest extends TestCase {
         assertTrue(idBST.contains(new KVPair<>(1, new Seminar(1,
             "Seminar Title", "2023-09-24", 60, (short)5, (short)5, 100,
             new String[] { "Keyword1", "Keyword2" }, "Seminar Description"))));
+    }
+
+    @Test
+    public void testSearch(){
+
+    }
+    @Test
+    public void testPrint(){}
+
+    @Test
+    public void testDelete() throws Exception {
+        String seminarData =
+            "1\nSeminar Title\n2023-09-24\n60\n5\n5\n100\nKeyword1,"
+                + " Keyword2\nSeminar Description";
+        Scanner scanner = new Scanner(seminarData);
+
+        world.addAndInsertSeminar(scanner, idBST, costBST, dateBST,
+            keywordsBST);
+
+//        world.delete(scanner,idBST,costBST,dateBST,keywordsBST);
+
     }
     
     

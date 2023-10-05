@@ -321,13 +321,25 @@ public class BSTTest {
             "Description 1");
         KVPair<Integer, Seminar> data1 = new KVPair<>(1, seminar1);
 
+        Seminar seminar2 = new Seminar(2, "Seminar 1", "2023-10-10", 2,
+            (short)10, (short)20, 50, new String[] { "keyword1" },
+            "Description 1");
+        KVPair<Integer, Seminar> data2 = new KVPair<>(2, seminar1);
+
         // test deletion of non existent data
-        idBST.delete(seminar1.id());
+        idBST.delete(1);
         assertFalse(idBST.contains(data1));
 
         // test deletion of inserted data
         idBST.insert(data1);
-        idBST.delete(data1.getValue().id());
+        idBST.insert(data2);
+
+//        idBST.remove(data1);
+        idBST.delete(seminar1.id());
+        dateBST.delete(seminar1.date());
+        costBST.delete(seminar1.cost());
+        keywordsBST.delete(seminar1.keywords());
+
         assertFalse(idBST.contains(data1));
     }
 
@@ -355,10 +367,27 @@ public class BSTTest {
 
     @Test
     public void testPrint() {
+
+        // test delete without any record present
         idBST.printIDTree();
         costBST.printCostTree();
         dateBST.printDateTree();
         keywordsBST.printKeywordsTree();
+
+        // test delete with an inserted record
+        Seminar seminar1 = new Seminar(1, "Seminar 1", "2023-10-10", 2,
+            (short)10, (short)20, 50, new String[] { "keyword1" },
+            "Description 1");
+
+        idBST.insertSeminar(1,seminar1);
+        dateBST.insertSeminar(seminar1.date(), seminar1);
+        costBST.insertSeminar(seminar1.cost(), seminar1);
+        keywordsBST.insertSeminar(seminar1, seminar1.keywords());
+
+        idBST.printIDTree();
+        dateBST.printDateTree();
+        costBST.printTree();
+        keywordsBST.printTree();
 
     }
 
