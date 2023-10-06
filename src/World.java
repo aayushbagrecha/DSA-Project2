@@ -137,17 +137,16 @@ class World {
 
 
     /**
-     * Searches for a seminar in the collection
-     * based on the provided scanner input.
+     * Searches for a seminar in the collection based on the provided scanner
+     * input.
      *
      * @param scanner
-     *            The scanner used to read the
-     *            seminar ID for searching.
+     *            The scanner used to read the seminar ID for searching.
+     * @param keywordsBST
+     *            The existing KeywordsBST instance containing seminar data.
      */
-    public void searchSeminarKeyword(Scanner scanner) {
+    public void searchSeminarKeyword(Scanner scanner, KeywordsBST keywordsBST) {
         String keywordValue = scanner.next().trim();
-        KeywordsBST keywordsBST = new KeywordsBST();
-        // System.out.println("Search keyword is: " + keywordValue);
         keywordsBST.searchByKeyword(keywordValue);
     }
 
@@ -163,24 +162,24 @@ class World {
     public void searchSeminarCost(Scanner scanner, CostBST costBST) {
         int cost1 = Integer.parseInt(scanner.next().trim());
         int cost2 = Integer.parseInt(scanner.next().trim());
-        costBST.searchByCost(cost1, cost2);
-
+        String result = costBST.searchByCost(cost1, cost2);
+        System.out.println(result);
     }
 
 
     /**
-     * Searches for a seminar in the collection
-     * based on the provided scanner input.
+     * Searches for seminars within a specified date range.
      *
      * @param scanner
-     *            The scanner used to read the
-     *            seminar ID for searching.
+     *            The scanner used to read start and end dates for the search.
+     * @param dateBST
+     *            The existing DateBST instance containing seminar data.
      */
     public void searchSeminarDate(Scanner scanner, DateBST dateBST) {
         String date1 = scanner.next().trim();
         String date2 = scanner.next().trim();
-// System.out.println("Search date 1 is: " + date1);
-// System.out.println("Search date 2 is: " + date2);
+        System.out.println("Seminars with dates in range " + date1 + " and "
+            + date2 + ":");
         dateBST.searchByDate(date1, date2);
     }
 
@@ -254,9 +253,14 @@ class World {
      * @throws NumberFormatException
      *             If the input ID cannot be parsed as an integer.
      */
-    public void delete(Scanner scanner, IDBST bst,CostBST cost, DateBST date, KeywordsBST keyword) {
+    public void delete(
+        Scanner scanner,
+        IDBST bst,
+        CostBST cost,
+        DateBST date,
+        KeywordsBST keyword) {
         int id = Integer.parseInt(scanner.nextLine().trim());
-        Seminar record=bst.searchByID(id);
+        Seminar record = bst.searchByID(id);
         bst.delete(id);
         cost.delete(record.cost());
         date.delete(record.date());

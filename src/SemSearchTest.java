@@ -1,5 +1,8 @@
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 import student.TestCase;
 
 /**
@@ -54,7 +57,6 @@ public class SemSearchTest extends TestCase {
     }
 
 
-
     /**
      * Check the validArgument parameter
      */
@@ -72,7 +74,10 @@ public class SemSearchTest extends TestCase {
      * Check the isPowerOfTwo method
      */
     public void testIsPowerOfTwo() {
-        assertTrue(SemSearch.isPowerOfTwo(1)); // 2^0 = 1
-        assertFalse(SemSearch.isPowerOfTwo(0)); // Not a power of two
+        assertTrue(SemSearch.isPowerOfTwo(1));
+        assertTrue(SemSearch.isPowerOfTwo(16));// 2^0 = 1
+        assertFalse(SemSearch.isPowerOfTwo(0));
+        assertFalse(SemSearch.isPowerOfTwo(-1));
+        assertFalse(SemSearch.isPowerOfTwo(-16));// Not a power of two
     }
 }

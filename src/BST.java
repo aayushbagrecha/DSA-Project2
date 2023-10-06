@@ -109,17 +109,18 @@ class KVPair<K extends Comparable<K>, E> implements Comparable<KVPair<K, E>> {
  *            The type of the key, which must extend Comparable.
  * @param <V>
  *            The type of the value.
- *            
+ * 
  * @author Aayush Bagrecha
  * @author Yash Shrikant
- *            
- * @version 1.0           
+ * 
+ * @version 1.0
  */
 class GenericBST<K extends Comparable<K>, V> {
     // Inner class representing a node in the BST
     /**
      * Represents a node in the Binary Search Tree (BST).
-     * Each node holds a key-value pair and references to its left and right children.
+     * Each node holds a key-value pair and references to its left and right
+     * children.
      *
      */
     protected class Node {
@@ -148,9 +149,11 @@ class GenericBST<K extends Comparable<K>, V> {
             right = null;
         }
     }
+
     /**
      * The root node of the Binary Search Tree (BST).
-     * It represents the starting point of the tree structure, from which all other nodes are descended.
+     * It represents the starting point of the tree structure, from which all
+     * other nodes are descended.
      */
     protected Node root;
     private int nodeCount; // To keep track of the number of nodes
@@ -175,20 +178,25 @@ class GenericBST<K extends Comparable<K>, V> {
         nodeCount++; // Increment nodeCount when a new node is inserted
     }
 
+
     /**
-     * Recursively inserts a new key-value pair into the Binary Search Tree (BST) rooted at the given node.
+     * Recursively inserts a new key-value pair into the Binary Search Tree
+     * (BST) rooted at the given node.
      *
-     * @param root The root node of the BST where the new data will be inserted.
-     * @param data The key-value pair to be inserted into the BST.
+     * @param root
+     *            The root node of the BST where the new data will be inserted.
+     * @param data
+     *            The key-value pair to be inserted into the BST.
      * @return The updated root node of the BST after insertion.
      */
     private Node inserthelp(Node root, KVPair<K, V> data) {
-        // If the current node is null, create a new node with the given data and return it
+        // If the current node is null, create a new node with the given data
+        // and return it
         if (root == null) {
             root = new Node(data);
             return root;
         }
-     // Compare the data with the current node's data and insert accordingly
+        // Compare the data with the current node's data and insert accordingly
         if (data.compareTo(root.data) <= 0) {
             root.left = inserthelp(root.left, data);
         }
@@ -211,16 +219,20 @@ class GenericBST<K extends Comparable<K>, V> {
         return findhelp(root, data);
     }
 
+
     /**
-     * Recursively finds a key-value pair with the given key in the Binary Search Tree (BST)
+     * Recursively finds a key-value pair with the given key in the Binary
+     * Search Tree (BST)
      * rooted at the specified node.
      *
-     * @param root The root node of the BST where the search will be performed.
-     * @param data The key-value pair to be searched for in the BST.
+     * @param root
+     *            The root node of the BST where the search will be performed.
+     * @param data
+     *            The key-value pair to be searched for in the BST.
      * @return The key-value pair found in the BST, or null if not found.
      */
     private KVPair<K, V> findhelp(Node root, KVPair<K, V> data) {
-     // If the current node is null, the data is not found in the BST
+        // If the current node is null, the data is not found in the BST
         if (root == null)
             return null;
 
@@ -238,7 +250,8 @@ class GenericBST<K extends Comparable<K>, V> {
     /**
      * Checks if the binary search tree contains a given key.
      *
-     * @param data   The key to check for.
+     * @param data
+     *            The key to check for.
      * @return True if the key is found in the tree, false otherwise.
      */
     public boolean contains(KVPair<K, V> data) {
@@ -348,6 +361,7 @@ class GenericBST<K extends Comparable<K>, V> {
 
 
 
+
 /**
  * Represents a Binary Search Tree (BST) specialized for storing Seminar objects
  * sorted by their associated ID.
@@ -401,9 +415,10 @@ class IDBST extends GenericBST<Integer, Seminar> {
         return size();
     }
 
+
     /**
      * Prints the contents of the ID Binary Search Tree (BST).
-     * This method displays the ID tree by calling the 
+     * This method displays the ID tree by calling the
      * {@link #printTree()} method,
      * providing an overview of the seminars sorted by their IDs.
      */
@@ -460,6 +475,7 @@ class IDBST extends GenericBST<Integer, Seminar> {
 
 
 
+
 /**
  * Represents a Binary Search Tree (BST) specialized for storing Seminar objects
  * sorted by their associated cost.
@@ -504,9 +520,10 @@ class CostBST extends GenericBST<Integer, Seminar> {
         return size();
     }
 
+
     /**
      * Prints the contents of the Cost Binary Search Tree (BST).
-     * This method displays the cost tree by calling the 
+     * This method displays the cost tree by calling the
      * {@link #printTree()} method,
      * providing an overview of the seminars sorted by cost.
      */
@@ -515,46 +532,57 @@ class CostBST extends GenericBST<Integer, Seminar> {
         printTree();
     }
 
+
     /**
      * Searches for seminars within a specified cost range.
      *
-     * @param cost1 The lower bound of the cost range.
-     * @param cost2 The upper bound of the cost range.
-     * @return The Seminar object if found within the 
-     * cost range, or null if not found.
+     * @param cost1
+     *            The lower bound of the cost range.
+     * @param cost2
+     *            The upper bound of the cost range.
+     * @return The Seminar object if found within the
+     *         cost range, or null if not found.
      */
-    public Seminar searchByCost(int cost1, int cost2) {
-        return searchByCost(root, cost1, cost2);
-    }
-
-
-    private Seminar searchByCost(Node node, int cost1, int cost2) {
+    private void searchByCost(
+        Node node,
+        int cost1,
+        int cost2,
+        StringBuilder result) {
         if (node == null) {
-            return null;
+            return;
         }
 
         int nodeCost = node.data.getKey();
 
         if (nodeCost >= cost1 && nodeCost <= cost2) {
             // The current node's cost is within the specified range
-            System.out.println("Found seminar with cost between " + cost1
-                + " and " + cost2 + ":");
-            System.out.println(node.data.getValue());
-            return node.data.getValue();
+            result.append("Found seminar with cost between ").append(cost1)
+                .append(" and ").append(cost2).append(":\n").append(node.data
+                    .getValue()).append("\n");
         }
-        else if (nodeCost > cost2) {
-            // The current node's cost is greater than the upper bound of the
-            // range,
-            // search in the left subtree
-            return searchByCost(node.left, cost1, cost2);
+
+        if (nodeCost >= cost1) {
+            // Search in the left subtree
+            searchByCost(node.left, cost1, cost2, result);
         }
-        else {
-            // The current node's cost is less than the lower bound of the
-            // range,
-            // search in the right subtree
-            return searchByCost(node.right, cost1, cost2);
+
+        if (nodeCost <= cost2) {
+            // Search in the right subtree
+            searchByCost(node.right, cost1, cost2, result);
         }
     }
+
+
+    /**
+     * Public method to initiate the search and return the result as a string.
+     */
+    public String searchByCost(int cost1, int cost2) {
+        StringBuilder result = new StringBuilder();
+        searchByCost(root, cost1, cost2, result);
+        return result.toString();
+    }
+
+
     public void delete(int cost) {
         KVPair<Integer, Seminar> data = new KVPair<>(cost, null);
         if (contains(data)) {
@@ -565,9 +593,11 @@ class CostBST extends GenericBST<Integer, Seminar> {
 
 
 
+
 /**
  * Represents a Binary Search Tree (BST) specialized for storing Seminar objects
  * sorted by their associated date.
+ * 
  * @author Aayush Bagrecha
  * @author Yash Shrikant
  * 
@@ -610,9 +640,11 @@ class DateBST extends GenericBST<String, Seminar> {
         return size();
     }
 
+
     /**
      * Prints the contents of the Date Binary Search Tree (BST).
-     * This method displays the date tree by calling the {@link #printTree()} method,
+     * This method displays the date tree by calling the {@link #printTree()}
+     * method,
      * providing an overview of the seminars sorted by date.
      */
     public void printDateTree() {
@@ -620,21 +652,23 @@ class DateBST extends GenericBST<String, Seminar> {
         printTree();
     }
 
+
     /**
      * Searches for seminars within a specified date range.
      *
-     * @param date1 The start date of the date range.
-     * @param date2 The end date of the date range.
-     * @return The Seminar object if found within the date range, or null if not found.
+     * @param date1
+     *            The start date of the date range.
+     * @param date2
+     *            The end date of the date range.
      */
-    public Seminar searchByDate(String date1, String date2) {
-        return searchByDate(root, date1, date2);
+    public void searchByDate(String date1, String date2) {
+        searchByDate(root, date1, date2);
     }
 
 
-    private Seminar searchByDate(Node node, String date1, String date2) {
+    private void searchByDate(Node node, String date1, String date2) {
         if (node == null) {
-            return null;
+            return;
         }
 
         String nodeDate = node.data.getKey(); // Get the date as a string
@@ -642,24 +676,15 @@ class DateBST extends GenericBST<String, Seminar> {
         // Compare strings using compareTo method
         if (nodeDate.compareTo(date1) >= 0 && nodeDate.compareTo(date2) <= 0) {
             // The current node's date is within the specified range
-            System.out.println("Found seminar with date between " + date1
-                + " and " + date2 + ":");
             System.out.println(node.data.getValue());
-            return node.data.getValue();
         }
-        else if (nodeDate.compareTo(date2) > 0) {
-            // The current node's date is greater than the upper bound of the
-            // range,
-            // search in the left subtree
-            return searchByDate(node.left, date1, date2);
-        }
-        else {
-            // The current node's date is less than the lower bound of the
-            // range,
-            // search in the right subtree
-            return searchByDate(node.right, date1, date2);
-        }
+
+        // Search in both left and right subtrees regardless of the comparison
+        // result
+        searchByDate(node.left, date1, date2);
+        searchByDate(node.right, date1, date2);
     }
+
 
     public void delete(String date) {
         KVPair<String, Seminar> data = new KVPair<>(date, null);
@@ -672,9 +697,11 @@ class DateBST extends GenericBST<String, Seminar> {
 
 
 
+
 /**
  * Represents a Binary Search Tree (BST) specialized for storing Seminar objects
  * sorted by their associated keywords.
+ * 
  * @author Aayush Bagrecha
  * @author Yash Shrikant
  * 
@@ -693,7 +720,8 @@ class KeywordsBST extends GenericBST<String, Seminar> {
     /**
      * Inserts a seminar with an ID into the tree.
      *
-     *            The ID of the seminar.
+     * The ID of the seminar.
+     * 
      * @param seminar
      *            The Seminar object to insert.
      */
@@ -715,9 +743,11 @@ class KeywordsBST extends GenericBST<String, Seminar> {
         return size();
     }
 
+
     /**
      * Prints the contents of the Keyword Binary Search Tree (BST).
-     * This method displays the keywords tree by calling the {@link #printTree()} method,
+     * This method displays the keywords tree by calling the
+     * {@link #printTree()} method,
      * providing an overview of the seminars sorted by keywords.
      */
     public void printKeywordsTree() {
@@ -733,26 +763,40 @@ class KeywordsBST extends GenericBST<String, Seminar> {
      *            The keyword of the seminar to search for.
      * @return The Seminar object if found, or null if not found.
      */
-    public Seminar searchByKeyword(String keywordValue) {
-        KVPair<String, Seminar> data = new KVPair<>(keywordValue, null);
-        KVPair<String, Seminar> result = find(data);
-        if (result != null) {
-            Seminar foundSeminar = result.getValue();
-            System.out.println("Found record with keyword " + keywordValue
-                + ":");
-            System.out.println(foundSeminar);
-            return foundSeminar;
-        }
-        else {
-            System.out.println(
-                "Search FAILED -- There is no record with keyword "
-                    + keywordValue);
-            return null;
-        }
+    /**
+     * Search for seminars by their keyword and print them.
+     *
+     * @param keywordValue
+     *            The keyword to search for.
+     */
+    public void searchByKeyword(String keywordValue) {
+        searchByKeyword(root, keywordValue);
     }
 
+
+    private void searchByKeyword(Node node, String keywordValue) {
+        if (node == null) {
+            return;
+        }
+
+        String nodeKeyword = node.data.getKey();
+
+        // Compare strings using equals method
+        if (nodeKeyword.equals(keywordValue)) {
+            // The current node's keyword matches the specified keyword
+            System.out.println("Found record with keyword " + keywordValue
+                + ":");
+            System.out.println(node.data.getValue());
+        }
+
+        // Search in both subtrees
+        searchByKeyword(node.left, keywordValue);
+        searchByKeyword(node.right, keywordValue);
+    }
+
+
     public void delete(String[] keywords) {
-        for(String keyword:keywords){
+        for (String keyword : keywords) {
             KVPair<String, Seminar> data = new KVPair<>(keyword, null);
             if (contains(data)) {
                 remove(data);

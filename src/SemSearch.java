@@ -168,7 +168,8 @@ public class SemSearch {
                         String searchType = scanner.next().trim();
                         switch (searchType) {
                             case "keyword":
-                                world.searchSeminarKeyword(scanner);
+                                world.searchSeminarKeyword(scanner,
+                                    keywordsBST);
                                 break;
 
                             case "ID":
@@ -207,7 +208,8 @@ public class SemSearch {
                         break;
 
                     case "delete":
-                        world.delete(scanner, idBST,costBST,dateBST,keywordsBST);
+                        world.delete(scanner, idBST, costBST, dateBST,
+                            keywordsBST);
                         break;
 
                     default:
