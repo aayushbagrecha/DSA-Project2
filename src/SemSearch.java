@@ -32,27 +32,22 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 /**
- * The `SemSearch` class is responsible
- * for managing and processing input arguments,
- * initializing data structures, and parsing
- * commands from a file to interact with
- * the `World` class.
+ * The `SemSearch` class is responsible for managing and processing input
+ * arguments, initializing data structures, and parsing commands from a file to
+ * interact with the `World` class.
  *
- * This program is designed to read input arguments, ˳
- * validate them, create necessary data structures,
- * and execute commands specified in an input file
- * to manage seminars and associated data.
- * 
+ * This program is designed to read input arguments, ˳ validate them, create
+ * necessary data structures, and execute commands specified in an input file to
+ * manage seminars and associated data.
+ *
  * @author Aayush Bagrecha
  * @author Yash Shrikant
- * 
  * @version 1.0
  */
 public class SemSearch {
     /**
      * @param args
-     *            Command line parameters
-     * 
+     *     Command line parameters
      * @return `true` if the program executed successfully, `false` otherwise.
      */
     public static void main(String[] args) {
@@ -73,8 +68,8 @@ public class SemSearch {
 
         }
         catch (NumberFormatException e) {
-            System.err.println("Invalid integer input."
-                + " Please provide a valid input.");
+            System.err.println(
+                "Invalid integer input." + " Please provide a valid input.");
             return;
         }
 
@@ -86,9 +81,11 @@ public class SemSearch {
         CostBST costBST = new CostBST();
         DateBST dateBST = new DateBST();
         KeywordsBST keywordsBST = new KeywordsBST();
+        Bintree bintree = new Bintree();
 
         try {
-            parseFile(file, world, idBST, costBST, dateBST, keywordsBST);
+            parseFile(file, world, idBST, costBST, dateBST, keywordsBST,
+                bintree);
             return;
         }
         catch (Exception e) {
@@ -102,7 +99,7 @@ public class SemSearch {
      * Checks if a given number is a power of two.
      *
      * @param number
-     *            The number to check.
+     *     The number to check.
      * @return `true` if the number is a power of two, `false` otherwise.
      */
     public static boolean isPowerOfTwo(int number) {
@@ -111,38 +108,34 @@ public class SemSearch {
 
 
     /**
-     * Parses a text file containing operations and data
-     * related to a "World" and populates
-     * various Binary Search Trees (BSTs) with the extracted
+     * Parses a text file containing operations and data related to a "World"
+     * and populates various Binary Search Trees (BSTs) with the extracted
      * information.
      *
-     * 
-     * For "insert" operations, data is used to create and
-     * insert seminars into multiple Binary
-     * Search Trees, such as IDBST, CostBST, DateBST, and KeywordsBST,
-     * depending on the operation's parameters.
-     * If an unknown operation is encountered, an error message is displayed,
-     * and the current line is skipped.
+     *
+     * For "insert" operations, data is used to create and insert seminars into
+     * multiple Binary Search Trees, such as IDBST, CostBST, DateBST, and
+     * KeywordsBST, depending on the operation's parameters. If an unknown
+     * operation is encountered, an error message is displayed, and the current
+     * line is skipped.
      *
      * @param file
-     *            The File object representing the text file to be parsed.
+     *     The File object representing the text file to be parsed.
      * @param world
-     *            The World object where seminar data will be stored.
+     *     The World object where seminar data will be stored.
      * @param idBST
-     *            The Binary Search Tree for storing seminars by ID.
+     *     The Binary Search Tree for storing seminars by ID.
      * @param costBST
-     *            The Binary Search Tree for storing seminars by cost.
+     *     The Binary Search Tree for storing seminars by cost.
      * @param dateBST
-     *            The Binary Search Tree for storing seminars by date.
+     *     The Binary Search Tree for storing seminars by date.
      * @param keywordsBST
-     *            The Binary Search Tree for storing seminars by keywords.
-     * @return True if the parsing and execution of operations
-     *         from the file were successful,
-     *         False if the file was not found or if an exception occurred
-     *         during parsing.
+     *     The Binary Search Tree for storing seminars by keywords.
+     * @return True if the parsing and execution of operations from the file
+     *     were successful, False if the file was not found or if an exception
+     *     occurred during parsing.
      * @throws Exception
-     *             If any unexpected errors occur during the
-     *             parsing process.
+     *     If any unexpected errors occur during the parsing process.
      */
     public static boolean parseFile(
         File file,
@@ -150,8 +143,8 @@ public class SemSearch {
         IDBST idBST,
         CostBST costBST,
         DateBST dateBST,
-        KeywordsBST keywordsBST)
-        throws Exception {
+        KeywordsBST keywordsBST,
+        Bintree bintree) throws Exception {
 
         try (Scanner scanner = new Scanner(file)) {
 
@@ -161,7 +154,7 @@ public class SemSearch {
                 switch (operation) {
                     case "insert":
                         world.addAndInsertSeminar(scanner, idBST, costBST,
-                            dateBST, keywordsBST);
+                            dateBST, keywordsBST, bintree);
                         break;
 
                     case "search":
@@ -183,6 +176,10 @@ public class SemSearch {
                             case "date":
                                 world.searchSeminarDate(scanner, dateBST);
                                 break;
+
+                            case "location":
+                                System.out.println("search location found");
+                                break;
                         }
                         break;
 
@@ -203,6 +200,10 @@ public class SemSearch {
 
                             case "cost":
                                 world.printCost(costBST);
+                                break;
+
+                            case "location":
+                                world.printLocation(bintree);
                                 break;
                         }
                         break;
