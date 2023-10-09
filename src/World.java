@@ -175,6 +175,22 @@ class World {
     }
 
 
+    public void searchSeminarLocation(Scanner scanner, Bintree bintree) {
+        int x = Integer.parseInt(scanner.next().trim());
+        int y = Integer.parseInt(scanner.next().trim());
+        int radius = Integer.parseInt(scanner.next().trim());
+
+        System.out.println(
+            "Seminars with location with coordinates " + x + " and " + y + ":");
+
+        Seminar seminars = bintree.search(x, y);
+
+        if (seminars == null) {
+            System.out.println();
+        }
+    }
+
+
     /**
      * Prints the contents of the Binary Search Tree (BST) representing seminars
      * by ID.

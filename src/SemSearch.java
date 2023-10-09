@@ -178,7 +178,7 @@ public class SemSearch {
                                 break;
 
                             case "location":
-                                System.out.println("search location found");
+                                world.searchSeminarLocation(scanner, bintree);
                                 break;
                         }
                         break;
