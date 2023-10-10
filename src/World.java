@@ -89,7 +89,6 @@ class World {
             costBST.insertSeminar(cost, seminar);
             dateBST.insertSeminar(dateTime, seminar);
             keywordsBST.insertSeminar(seminar, keywords);
-            bintree.insert(seminar.x(), seminar.y(), seminar);
 
             System.out.println("Successfully inserted record with ID " + id);
             System.out.println("ID: " + id + ", Title: " + title);
@@ -97,6 +96,8 @@ class World {
                 "Date: " + dateTime + ", Length: " + length + ", X: " + x + ", Y: " + y + ", Cost: " + cost);
             System.out.println("Description: " + description);
             System.out.println("Keywords: " + String.join(", ", keywords));
+
+            bintree.insert(seminar.x(), seminar.y(), seminar);
         }
     }
 
@@ -153,6 +154,8 @@ class World {
     public void searchSeminarCost(Scanner scanner, CostBST costBST) {
         int cost1 = Integer.parseInt(scanner.next().trim());
         int cost2 = Integer.parseInt(scanner.next().trim());
+        System.out.println(
+            "Seminars with costs in range " + cost1 + " to " + cost2 + ":");
         String result = costBST.searchByCost(cost1, cost2);
         System.out.println(result);
     }
@@ -170,7 +173,7 @@ class World {
         String date1 = scanner.next().trim();
         String date2 = scanner.next().trim();
         System.out.println(
-            "Seminars with dates in range " + date1 + " and " + date2 + ":");
+            "Seminars with dates in range " + date1 + " to " + date2 + ":");
         dateBST.searchByDate(date1, date2);
     }
 
@@ -183,11 +186,11 @@ class World {
         System.out.println(
             "Seminars with location with coordinates " + x + " and " + y + ":");
 
-        Seminar seminars = bintree.search(x, y);
-
-        if (seminars == null) {
-            System.out.println();
-        }
+//        Seminar seminars = bintree.search(x, y);
+//
+//        if (seminars == null) {
+//            System.out.println();
+//        }
     }
 
 

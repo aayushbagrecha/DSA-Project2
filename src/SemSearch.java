@@ -177,9 +177,9 @@ public class SemSearch {
                                 world.searchSeminarDate(scanner, dateBST);
                                 break;
 
-                            case "location":
-                                world.searchSeminarLocation(scanner, bintree);
-                                break;
+//                            case "location":
+//                                world.searchSeminarLocation(scanner, bintree);
+//                                break;
                         }
                         break;
 

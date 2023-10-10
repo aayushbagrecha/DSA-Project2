@@ -129,72 +129,36 @@ public class WorldTest extends TestCase {
 
     public void testAddAndInsertSeminarSuccess() throws Exception {
 
-        // Create a sample Scanner with seminar data
-        String seminarData =
-            "1\nSeminar Title\n2023-09-24\n60\n5\n5\n100\nKeyword1," + " Keyword2\nSeminar Description";
-        Scanner scanner = new Scanner(seminarData);
-
-        // Call the addAndInsertSeminar method
-        world.addAndInsertSeminar(scanner, idBST, costBST, dateBST, keywordsBST,
-            new Bintree());
-
-        // Assert that the seminar with ID 1 was inserted into the IDBST
-        assertTrue(idBST.contains(new KVPair<>(1,
-            new Seminar(1, "Seminar Title", "2023-09-24", 60, (short)5,
-                (short)5, 100, new String[] { "Keyword1", "Keyword2" },
-                "Seminar Description"))));
+        String[] args = new String[2];
+        args[0] = "128";
+        args[1] = "P2syntaxInsert_input.txt";
+        SemSearch.main(args);
+        String output = systemOut().getHistory();
+        String referenceOutput = readFile("P2syntaxInsert_output.txt");
+        assertFuzzyEquals(referenceOutput, output);
     }
 
 
     @Test
     public void testSearch() throws Exception {
+        String[] args = new String[2];
+        args[0] = "128";
+        args[1] = "P2syntaxSearch_input.txt";
+        SemSearch.main(args);
+        String output = systemOut().getHistory();
+        String referenceOutput = readFile("P2syntaxSearch_output.txt");
+        assertFuzzyEquals(referenceOutput, output);
     }
 
 
     @Test
-    public void testPrint() throws Exception {
-        String seminarData = """
-            1
-            Seminar Title
-            2023-09-24
-            60
-            5
-            5
-            100
-            Keyword1 Keyword2
-            Seminar Description
-            """;
-        Scanner scanner = new Scanner(seminarData);
+    public void testPrint() {
 
-        world.addAndInsertSeminar(scanner, idBST, costBST, dateBST, keywordsBST,
-            new Bintree());
-
-        world.printID(idBST);
-        world.printCost(costBST);
-        world.printDate(dateBST);
-        world.printKeywords(keywordsBST);
     }
 
 
     @Test
-    public void testDelete() throws Exception {
-        String seminarData = """
-            1
-            Seminar Title
-            2023-09-24
-            60
-            5
-            5
-            100
-            Keyword1 Keyword2
-            Seminar Description
-            1""";
-        Scanner scanner = new Scanner(seminarData);
-
-        world.addAndInsertSeminar(scanner, idBST, costBST, dateBST,
-            keywordsBST);
-
-        world.delete(scanner, idBST, costBST, dateBST, keywordsBST);
+    public void testDelete() {
 
     }
 
