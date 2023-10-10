@@ -78,8 +78,6 @@ public class Bintree {
 
 
     private BintreeNode delete(BintreeNode node, int id) {
-
-        System.out.println("BEFORE DELETION:" + node.seminars.print());
         return node;
 
     }

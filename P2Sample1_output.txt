@@ -1,5 +1,3 @@
-Location Tree:
-E
 ID Tree:
 This tree is empty
 Search FAILED -- There is no record with ID 1
@@ -98,22 +96,6 @@ Cost Tree:
     17
       null
 Number of records: 4
-Location Tree:
-I
-  I
-    I
-      I
-        I
-          I
-            I
-              Leaf with 1 objects: 3
-              Leaf with 2 objects: 1 2
-            E
-          Leaf with 1 objects: 10
-        E
-      E
-    E
-  E
 Insert FAILED - There is already a record with ID 10
 Seminars matching keyword VT:
 ID: 10, Title: Computing Systems Research at VT
@@ -144,27 +126,6 @@ Date: 0610051600, Length: 90, X: 10, Y: 10, Cost: 45
 Description: This seminar will present an overview of HCI research at VT
 Keywords: HCI, Computer_Science, VT, Virginia_Tech
 7 nodes visited in this search
-Seminars within 1 units of -1, 0:
-Found a record with key value 3 at 0, 0
-8 nodes visited in this search
-Seminars within 2000 units of -1, 0:
-Found a record with key value 3 at 0, 0
-Found a record with key value 1 at 10, 10
-Found a record with key value 2 at 10, 10
-Found a record with key value 10 at 30, 10
-15 nodes visited in this search
-Seminars within 0 units of 10, 10:
-Found a record with key value 1 at 10, 10
-Found a record with key value 2 at 10, 10
-8 nodes visited in this search
-Seminars within 0 units of 11, 11:
-8 nodes visited in this search
-Seminars within 20 units of 10, 10:
-Found a record with key value 3 at 0, 0
-Found a record with key value 1 at 10, 10
-Found a record with key value 2 at 10, 10
-Found a record with key value 10 at 30, 10
-11 nodes visited in this search
 Seminars with dates in range 0 to 1:
 ID: 1, Title: Overview of HCI Research at VT
 Date: 0610051600, Length: 90, X: 10, Y: 10, Cost: 45
@@ -190,19 +151,3 @@ ID Tree:
 2
   null
 Number of records: 3
-Location Tree:
-I
-  I
-    I
-      I
-        I
-          I
-            I
-              Leaf with 1 objects: 3
-              Leaf with 1 objects: 2
-            E
-          Leaf with 1 objects: 10
-        E
-      E
-    E
-  E

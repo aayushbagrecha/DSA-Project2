@@ -438,14 +438,9 @@ class IDBST extends GenericBST<Integer, Seminar> {
         KVPair<Integer, Seminar> data = new KVPair<>(id, null);
         KVPair<Integer, Seminar> result = find(data);
         if (result != null) {
-            Seminar foundSeminar = result.getValue();
-            System.out.println("Found record with ID " + id + ":");
-            System.out.println(foundSeminar);
-            return foundSeminar;
+            return result.getValue();
         }
         else {
-            System.out.println(
-                "Search FAILED -- There is no record with ID " + id);
             return null;
         }
     }
@@ -552,7 +547,7 @@ class CostBST extends GenericBST<Integer, Seminar> {
 
         if (nodeCost >= cost1 && nodeCost <= cost2) {
             // The current node's cost is within the specified range
-            result.append(node.data.getValue()).append("\n");
+            result.insert(0, node.data.getValue() + "\n");
         }
 
         visitCount++;
@@ -572,11 +567,11 @@ class CostBST extends GenericBST<Integer, Seminar> {
     /**
      * Public method to initiate the search and return the result as a string.
      */
-    public String searchByCost(int cost1, int cost2) {
+    public void searchByCost(int cost1, int cost2) {
         StringBuilder result = new StringBuilder();
         searchByCost(root, cost1, cost2, result);
         result.append(visitCount).append(" nodes visited in this search");
-        return result.toString();
+        System.out.println(result);
     }
 
 
@@ -759,11 +754,14 @@ class KeywordsBST extends GenericBST<String, Seminar> {
      */
     public void searchByKeyword(String keywordValue) {
         System.out.println("Seminars matching keyword " + keywordValue + ":");
-        searchByKeyword(root, keywordValue);
+        StringBuilder output = new StringBuilder();
+        searchByKeyword(root, keywordValue, output);
+        System.out.print(output);
     }
 
 
-    private void searchByKeyword(Node node, String keywordValue) {
+    private void searchByKeyword(
+        Node node, String keywordValue, StringBuilder output) {
         if (node == null) {
             return;
         }
@@ -773,14 +771,14 @@ class KeywordsBST extends GenericBST<String, Seminar> {
         // Compare strings using equals method
         if (nodeKeyword.equals(keywordValue)) {
             // The current node's keyword matches the specified keyword
-            System.out.println(
-                "Found record with keyword " + keywordValue + ":");
-            System.out.println(node.data.getValue());
+//            System.out.println(node.data.getValue());
+            output.insert(0, node.data.getValue() + "\n");
+
         }
 
         // Search in both subtrees
-        searchByKeyword(node.left, keywordValue);
-        searchByKeyword(node.right, keywordValue);
+        searchByKeyword(node.left, keywordValue, output);
+        searchByKeyword(node.right, keywordValue, output);
     }
 
 

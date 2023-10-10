@@ -124,8 +124,15 @@ class World {
      */
     public void searchSeminarID(Scanner scanner, IDBST idBST) {
         int id = Integer.parseInt(scanner.nextLine().trim());
-        idBST.searchByID(id);
-        // System.out.println("Search ID is: " + id);
+        Seminar seminar = idBST.searchByID(id);
+        if (seminar != null) {
+            System.out.println("Found record with ID " + id + ":");
+            System.out.println(seminar);
+        }
+        else {
+            System.out.println(
+                "Search FAILED -- There is no record with ID " + id);
+        }
     }
 
 
@@ -156,8 +163,7 @@ class World {
         int cost2 = Integer.parseInt(scanner.next().trim());
         System.out.println(
             "Seminars with costs in range " + cost1 + " to " + cost2 + ":");
-        String result = costBST.searchByCost(cost1, cost2);
-        System.out.println(result);
+        costBST.searchByCost(cost1, cost2);
     }
 
 

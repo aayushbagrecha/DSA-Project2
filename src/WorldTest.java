@@ -152,14 +152,14 @@ public class WorldTest extends TestCase {
 
 
     @Test
-    public void testPrint() {
-
-    }
-
-
-    @Test
-    public void testDelete() {
-
+    public void testAll() throws IOException {
+        String[] args = new String[2];
+        args[0] = "128";
+        args[1] = "P2Sample1_input.txt";
+        SemSearch.main(args);
+        String output = systemOut().getHistory();
+        String referenceOutput = readFile("P2Sample1_output.txt");
+        assertFuzzyEquals(referenceOutput, output);
     }
 
 }

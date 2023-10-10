@@ -1,5 +1,3 @@
-print location
-
               print ID
 search ID 1
 search keyword VT
@@ -46,8 +44,6 @@ print date
                 print                   keyword
                 
 print cost
-
-  print location
   
 insert 10
 Overview of HPC and CSE Research at VT
@@ -59,17 +55,9 @@ search keyword VT
 search keyword vt
 search ID 1
 search cost 30 50
-
-search location -1 0 1
-search location -1 0 2000
-
-search location 10 10 0
-search location 11 11 0
-search location 10 10 20
 search date 0 1
 
 delete 1
 delete 1
 
 print ID
-print location
