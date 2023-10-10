@@ -539,13 +539,12 @@ class CostBST extends GenericBST<Integer, Seminar> {
      *     The lower bound of the cost range.
      * @param cost2
      *     The upper bound of the cost range.
-     * @return The Seminar object if found within the cost range, or null if not
-     *     found.
      */
     private void searchByCost(
         Node node, int cost1, int cost2, StringBuilder result) {
 
         if (node == null) {
+            visitCount++;
             return;
         }
 
@@ -576,8 +575,7 @@ class CostBST extends GenericBST<Integer, Seminar> {
     public String searchByCost(int cost1, int cost2) {
         StringBuilder result = new StringBuilder();
         searchByCost(root, cost1, cost2, result);
-        result.append(visitCount + " nodes visited in this search");
-        visitCount = 0;
+        result.append(visitCount).append(" nodes visited in this search");
         return result.toString();
     }
 
@@ -603,6 +601,9 @@ class CostBST extends GenericBST<Integer, Seminar> {
  */
 class DateBST extends GenericBST<String, Seminar> {
 
+    private int visitCount;
+
+
     /**
      * Constructs a new empty `IDBST`.
      */
@@ -618,8 +619,6 @@ class DateBST extends GenericBST<String, Seminar> {
      *     The ID of the seminar.
      * @param seminar
      *     The Seminar object to insert.
-     * @return True if the insertion was successful, false if an ID collision
-     *     occurred.
      */
     public void insertSeminar(String id, Seminar seminar) {
 
@@ -660,15 +659,19 @@ class DateBST extends GenericBST<String, Seminar> {
      */
     public void searchByDate(String date1, String date2) {
         searchByDate(root, date1, date2);
+        System.out.println(visitCount + " nodes visited in this search");
     }
 
 
     private void searchByDate(Node node, String date1, String date2) {
         if (node == null) {
+            visitCount++; // null nodes are counted as visited
             return;
         }
 
         String nodeDate = node.data.getKey(); // Get the date as a string
+
+        visitCount++;
 
         // Compare strings using compareTo method
         if (nodeDate.compareTo(date1) >= 0 && nodeDate.compareTo(date2) <= 0) {
@@ -677,7 +680,6 @@ class DateBST extends GenericBST<String, Seminar> {
         }
 
         // Search in both left and right subtrees regardless of the comparison
-        // result
         searchByDate(node.left, date1, date2);
         searchByDate(node.right, date1, date2);
     }
@@ -716,8 +718,6 @@ class KeywordsBST extends GenericBST<String, Seminar> {
     /**
      * Inserts a seminar with an ID into the tree.
      *
-     * The ID of the seminar.
-     *
      * @param seminar
      *     The Seminar object to insert.
      */
@@ -750,13 +750,7 @@ class KeywordsBST extends GenericBST<String, Seminar> {
         printTree();
     }
 
-    /**
-     * Search for a seminar by its keyword.
-     *
-     * @param keywordValue
-     *            The keyword of the seminar to search for.
-     * @return The Seminar object if found, or null if not found.
-     */
+
     /**
      * Search for seminars by their keyword and print them.
      *
