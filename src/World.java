@@ -269,13 +269,16 @@ class World {
         IDBST bst,
         CostBST cost,
         DateBST date,
-        KeywordsBST keyword) {
+        KeywordsBST keyword,
+        Bintree bintree) {
+
         int id = Integer.parseInt(scanner.nextLine().trim());
         Seminar record = bst.searchByID(id);
         bst.delete(id);
         cost.delete(record.cost());
         date.delete(record.date());
         keyword.delete(record.keywords());
+        bintree.delete(id);
     }
 
 }

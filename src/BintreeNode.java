@@ -1,11 +1,39 @@
+/**
+ * The type Bintree node.
+ */
 class BintreeNode {
+    /**
+     * The X.
+     */
     int x;
+    /**
+     * The Y.
+     */
     int y;
+    /**
+     * The Seminars.
+     */
     SeminarNode seminars;
+    /**
+     * The Left.
+     */
     BintreeNode left;
+    /**
+     * The Right.
+     */
     BintreeNode right;
 
 
+    /**
+     * Instantiates a new Bintree node.
+     *
+     * @param x
+     *     the x
+     * @param y
+     *     the y
+     * @param seminar
+     *     the seminar
+     */
     BintreeNode(int x, int y, Seminar seminar) {
         this.x = x;
         this.y = y;
@@ -19,18 +47,39 @@ class BintreeNode {
 
 
 
+/**
+ * The type Seminar node.
+ */
 class SeminarNode {
+    /**
+     * The Seminar.
+     */
     Seminar seminar;
+    /**
+     * The Next.
+     */
     SeminarNode next;
 
 
+    /**
+     * Instantiates a new Seminar node.
+     *
+     * @param seminar
+     *     the seminar
+     */
     public SeminarNode(Seminar seminar) {
         this.seminar = seminar;
         this.next = null;
     }
 
 
-    // Insert a seminar at the end of the linked list
+    /**
+     * Insert.
+     *
+     * @param seminar
+     *     the seminar
+     */
+// Insert a seminar at the end of the linked list
     public void insert(Seminar seminar) {
         SeminarNode newNode = new SeminarNode(seminar);
         SeminarNode current = this;
@@ -41,16 +90,31 @@ class SeminarNode {
     }
 
 
-    public void print() {
+    /**
+     * print.
+     *
+     * @return the string builder
+     */
+    public StringBuilder print() {
+        StringBuilder output = new StringBuilder();
         SeminarNode current = this;
         while (current != null) {
-            System.out.println(current.seminar);
+            output.append(current.seminar.id()).append(" ");
             current = current.next;
         }
+//        output.append("\n");
+        return output;
     }
 
 
-    // Search for a seminar with a specific ID in the linked list
+    /**
+     * Search seminar.
+     *
+     * @param id
+     *     the id
+     * @return the seminar
+     */
+// Search for a seminar with a specific ID in the linked list
     public Seminar search(int id) {
         SeminarNode current = this;
         while (current != null) {
@@ -63,7 +127,14 @@ class SeminarNode {
     }
 
 
-    // Delete a seminar with a specific ID from the linked list
+    /**
+     * Delete boolean.
+     *
+     * @param id
+     *     the id
+     * @return the boolean
+     */
+// Delete a seminar with a specific ID from the linked list
     public boolean delete(int id) {
         SeminarNode current = this;
         SeminarNode prev = null;
@@ -87,6 +158,11 @@ class SeminarNode {
     }
 
 
+    /**
+     * Gets numberof seminars.
+     *
+     * @return the numberof seminars
+     */
     public int getNumberofSeminars() {
         SeminarNode current = this;
 
@@ -94,7 +170,7 @@ class SeminarNode {
             return 0;
         }
 
-        int count = 0;
+        int count = 1;
         while (current.next != null) {
             count += 1;
             current = current.next;

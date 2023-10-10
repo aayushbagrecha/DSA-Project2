@@ -485,6 +485,9 @@ class IDBST extends GenericBST<Integer, Seminar> {
  */
 class CostBST extends GenericBST<Integer, Seminar> {
 
+    private int visitCount;
+
+
     /**
      * Constructs a new empty `IDBST`.
      */
@@ -553,6 +556,8 @@ class CostBST extends GenericBST<Integer, Seminar> {
             result.append(node.data.getValue()).append("\n");
         }
 
+        visitCount++;
+
         if (nodeCost >= cost1) {
             // Search in the left subtree
             searchByCost(node.left, cost1, cost2, result);
@@ -571,6 +576,8 @@ class CostBST extends GenericBST<Integer, Seminar> {
     public String searchByCost(int cost1, int cost2) {
         StringBuilder result = new StringBuilder();
         searchByCost(root, cost1, cost2, result);
+        result.append(visitCount + " nodes visited in this search");
+        visitCount = 0;
         return result.toString();
     }
 

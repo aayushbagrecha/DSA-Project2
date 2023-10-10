@@ -210,7 +210,7 @@ public class SemSearch {
 
                     case "delete":
                         world.delete(scanner, idBST, costBST, dateBST,
-                            keywordsBST);
+                            keywordsBST, bintree);
                         break;
 
                     default:

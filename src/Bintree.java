@@ -1,14 +1,30 @@
+/**
+ * The type Bintree.
+ */
 public class Bintree {
 
     private BintreeNode root;
 
 
+    /**
+     * Instantiates a new Bintree.
+     */
     public Bintree() {
         root = null;
     }
 
 
-    // Insert method without using in-built data structures
+    /**
+     * Insert.
+     *
+     * @param x
+     *     the x
+     * @param y
+     *     the y
+     * @param seminar
+     *     the seminar
+     */
+// Insert method without using in-built data structures
     public void insert(int x, int y, Seminar seminar) {
         root = insert(root, x, y, seminar);
     }
@@ -23,28 +39,16 @@ public class Bintree {
         if (x < node.x || (x == node.x && y < node.y)) {
             node.left = insert(node.left, x, y, seminar);
         }
-        else if (x > node.x || (x == node.x && y > node.y)) {
+        else if (x > node.x || y > node.y) {
             node.right = insert(node.right, x, y, seminar);
         }
         else {
             // Handle duplicate key: add seminar to the linked list
             node.seminars.insert(seminar);
-//            System.out.println("PRINTING LINKEDLIST");
-            node.seminars.print();
-//            System.out.println("PRINTING ENDED");
         }
 
         return node;
     }
-
-    // Search method without using in-built data structures
-//    public SeminarNode search(int x, int y) {
-//        return search(root, x, y);
-//    }
-
-//    public Seminar search(int x, int y) {
-//        return null;
-//    }
 
 
     private SeminarNode search(BintreeNode node, int x, int y) {
@@ -66,40 +70,19 @@ public class Bintree {
         }
     }
 
-    // Delete method without using in-built data structures
-//    public void delete(int x, int y) {
-//        root = delete(root, x, y);
-//    }
 
-//    private BintreeNode delete(BintreeNode node, int x, int y) {
-//        if (node == null) {
-//            return null;
-//        }
-//
-//        if (node.seminar.x() == x && node.seminar.y() == y) {
-//            // Case 1: Node with one child or no child
-//            if (node.left == null) {
-//                return node.right;
-//            }
-//            else if (node.right == null) {
-//                return node.left;
-//            }
-//
-//            // Case 2: Node with two children
-//            BintreeNode successor = findMin(node.right);
-//            node.seminar = successor.seminar;
-//            node.right = delete(node.right, successor.seminar.x(),
-//                successor.seminar.y());
-//        }
-//        else if (node.seminar.x() > x || (node.seminar.x() == x && node.seminar.y() > y)) {
-//            node.left = delete(node.left, x, y);
-//        }
-//        else {
-//            node.right = delete(node.right, x, y);
-//        }
-//
-//        return node;
-//    }
+    // Delete method without using in-built data structures
+    public void delete(int id) {
+        root = delete(root, id);
+    }
+
+
+    private BintreeNode delete(BintreeNode node, int id) {
+
+        System.out.println("BEFORE DELETION:" + node.seminars.print());
+        return node;
+
+    }
 
 
     private BintreeNode findMin(BintreeNode node) {
@@ -110,9 +93,13 @@ public class Bintree {
     }
 
 
-    // Print method without using in-built data structures
+    /**
+     * Print.
+     */
+// Print method without using in-built data structures
     public void print() {
-        print(root, "");
+        System.out.println("Location Tree:");
+        print(root, " ");
     }
 
 
@@ -122,20 +109,16 @@ public class Bintree {
             return;
         }
 
-        // Preorder traversal
-//        System.out.println(
-//            prefix + node.x + " " + node.y + " WITH NODES:" + node.seminars.getNumberofSeminars());
-
         if (node.left == null && node.right == null) {
             System.out.println(
-                prefix + "Leaf with " + node.seminars.getNumberofSeminars() + " objects:");
+                prefix + "Leaf with " + node.seminars.getNumberofSeminars() + " objects: " + node.seminars.print());
         }
         else {
-            System.out.println(
-                node.left.seminars.seminar.x() + " " + node.right.seminars);
+            System.out.println(prefix + "I");
         }
+
         // Recur on left and right subtrees
-        print(node.left, prefix + " ");
-        print(node.right, prefix + " ");
+        print(node.left, prefix + "  ");
+        print(node.right, prefix + "  ");
     }
 }
