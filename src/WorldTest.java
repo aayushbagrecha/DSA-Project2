@@ -9,6 +9,8 @@ import java.nio.file.Paths;
 import java.util.Scanner;
 
 /**
+ * The type World test.
+ *
  * @author Aayush Bagrecha
  * @author Yash Shrikant
  * @version 1.0
@@ -19,9 +21,10 @@ public class WorldTest extends TestCase {
      * Read contents of a file into a string
      *
      * @param path
-     *     File name
+     *            File name
      * @return the string
      * @throws IOException
+     *             the io exception
      */
     static String readFile(String path) throws IOException {
         byte[] encoded = Files.readAllBytes(Paths.get(path));
@@ -33,8 +36,8 @@ public class WorldTest extends TestCase {
      * Full parser test
      *
      * @throws IOException
+     *             the io exception
      */
-
     public void testparserfull() throws IOException {
         String[] args = new String[2];
         args[0] = "1024";
@@ -108,13 +111,11 @@ public class WorldTest extends TestCase {
         assertArrayEquals(expectedKeywords, result);
     }
 
-
     private World world;
     private IDBST idBST;
     private CostBST costBST;
     private DateBST dateBST;
     private KeywordsBST keywordsBST;
-
 
     public void setUp() {
         // Initialize the World, IDBST, CostBST, DateBST, and KeywordsBST
@@ -127,6 +128,12 @@ public class WorldTest extends TestCase {
     }
 
 
+    /**
+     * Test add and insert seminar success.
+     *
+     * @throws Exception
+     *             the exception
+     */
     public void testAddAndInsertSeminarSuccess() throws Exception {
 
         String[] args = new String[2];
@@ -139,6 +146,12 @@ public class WorldTest extends TestCase {
     }
 
 
+    /**
+     * Test all.
+     *
+     * @throws IOException
+     *             the io exception
+     */
     @Test
     public void testAll() throws IOException {
         String[] args = new String[2];

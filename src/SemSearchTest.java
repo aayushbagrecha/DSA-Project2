@@ -1,14 +1,16 @@
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import student.TestCase;
 
 /**
+ * The type Sem search test.
+ *
  * @author Aayush Bagrecha
  * @author Yash Shrikant
- * 
  * @version 1.0
  */
 public class SemSearchTest extends TestCase {

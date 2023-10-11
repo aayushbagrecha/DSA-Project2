@@ -34,11 +34,9 @@ import java.util.Scanner;
 /**
  * The `SemSearch` class is responsible for managing and processing input
  * arguments, initializing data structures, and parsing commands from a file to
- * interact with the `World` class.
- *
- * This program is designed to read input arguments, ˳ validate them, create
- * necessary data structures, and execute commands specified in an input file to
- * manage seminars and associated data.
+ * interact with the `World` class. This program is designed to read input
+ * arguments, ˳ validate them, create necessary data structures, and execute
+ * commands specified in an input file to manage seminars and associated data.
  *
  * @author Aayush Bagrecha
  * @author Yash Shrikant
@@ -46,8 +44,10 @@ import java.util.Scanner;
  */
 public class SemSearch {
     /**
+     * The entry point of application.
+     *
      * @param args
-     *     Command line parameters
+     *            Command line parameters
      * @return `true` if the program executed successfully, `false` otherwise.
      */
     public static void main(String[] args) {
@@ -68,8 +68,8 @@ public class SemSearch {
 
         }
         catch (NumberFormatException e) {
-            System.err.println(
-                "Invalid integer input." + " Please provide a valid input.");
+            System.err.println("Invalid integer input."
+                + " Please provide a valid input.");
             return;
         }
 
@@ -89,8 +89,8 @@ public class SemSearch {
             return;
         }
         catch (Exception e) {
-            System.out.println(
-                "Exception " + e + " occurred while reading file");
+            System.out.println("Exception " + e
+                + " occurred while reading file");
             return;
         }
     }
@@ -100,7 +100,7 @@ public class SemSearch {
      * Checks if a given number is a power of two.
      *
      * @param number
-     *     The number to check.
+     *            The number to check.
      * @return `true` if the number is a power of two, `false` otherwise.
      */
     public static boolean isPowerOfTwo(int number) {
@@ -118,22 +118,25 @@ public class SemSearch {
      * current line is skipped.
      *
      * @param file
-     *     The File object representing the text file to be parsed.
+     *            The File object representing the text file to be parsed.
      * @param world
-     *     The World object where seminar data will be stored.
+     *            The World object where seminar data will be stored.
      * @param idBST
-     *     The Binary Search Tree for storing seminars by ID.
+     *            The Binary Search Tree for storing seminars by ID.
      * @param costBST
-     *     The Binary Search Tree for storing seminars by cost.
+     *            The Binary Search Tree for storing seminars by cost.
      * @param dateBST
-     *     The Binary Search Tree for storing seminars by date.
+     *            The Binary Search Tree for storing seminars by date.
      * @param keywordsBST
-     *     The Binary Search Tree for storing seminars by keywords.
+     *            The Binary Search Tree for storing seminars by keywords.
+     * @param bintree
+     *            the bintree
      * @return True if the parsing and execution of operations from the file
-     *     were successful, False if the file was not found or if an exception
-     *     occurred during parsing.
+     *         were successful, False if the file was not found or if an
+     *         exception
+     *         occurred during parsing.
      * @throws Exception
-     *     If any unexpected errors occur during the parsing process.
+     *             If any unexpected errors occur during the parsing process.
      */
     public static boolean parseFile(
         File file,
@@ -142,7 +145,8 @@ public class SemSearch {
         CostBST costBST,
         DateBST dateBST,
         KeywordsBST keywordsBST,
-        Bintree bintree) throws Exception {
+        Bintree bintree)
+        throws Exception {
 
         try (Scanner scanner = new Scanner(file)) {
 

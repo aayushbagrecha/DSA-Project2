@@ -1,10 +1,13 @@
 /**
- * The type Bintree.
+ * The type World test.
+ *
+ * @author Aayush Bagrecha
+ * @author Yash Shrikant
+ * @version 1.0
  */
 public class Bintree {
 
     private BintreeNode root;
-
 
     /**
      * Instantiates a new Bintree.
@@ -18,11 +21,11 @@ public class Bintree {
      * Insert.
      *
      * @param x
-     *     the x
+     *            the x
      * @param y
-     *     the y
+     *            the y
      * @param seminar
-     *     the seminar
+     *            the seminar
      */
 // Insert method without using in-built data structures
     public void insert(int x, int y, Seminar seminar) {
@@ -31,7 +34,10 @@ public class Bintree {
 
 
     private BintreeNode insert(
-        BintreeNode node, int x, int y, Seminar seminar) {
+        BintreeNode node,
+        int x,
+        int y,
+        Seminar seminar) {
         if (node == null) {
             return new BintreeNode(x, y, seminar);
         }
@@ -71,7 +77,13 @@ public class Bintree {
     }
 
 
-    // Delete method without using in-built data structures
+    /**
+     * Delete.
+     *
+     * @param id
+     *            the id
+     */
+// Delete method without using in-built data structures
     public void delete(int id) {
         root = delete(root, id);
     }
@@ -108,8 +120,8 @@ public class Bintree {
         }
 
         if (node.left == null && node.right == null) {
-            System.out.println(
-                prefix + "Leaf with " + node.seminars.getNumberofSeminars() + " objects: " + node.seminars.print());
+            System.out.println(prefix + "Leaf with " + node.seminars
+                .getNumberofSeminars() + " objects: " + node.seminars.print());
         }
         else {
             System.out.println(prefix + "I");

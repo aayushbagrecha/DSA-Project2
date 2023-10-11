@@ -1,38 +1,41 @@
 /**
- * The type Bintree node.
+ * The type World test.
+ *
+ * @author Aayush Bagrecha
+ * @author Yash Shrikant
+ * @version 1.0
  */
 class BintreeNode {
     /**
      * The X.
      */
-    int x;
+    protected int x;
     /**
      * The Y.
      */
-    int y;
+    protected int y;
     /**
      * The Seminars.
      */
-    SeminarNode seminars;
+    protected SeminarNode seminars;
     /**
      * The Left.
      */
-    BintreeNode left;
+    protected BintreeNode left;
     /**
      * The Right.
      */
-    BintreeNode right;
-
+    protected BintreeNode right;
 
     /**
      * Instantiates a new Bintree node.
      *
      * @param x
-     *     the x
+     *            the x
      * @param y
-     *     the y
+     *            the y
      * @param seminar
-     *     the seminar
+     *            the seminar
      */
     BintreeNode(int x, int y, Seminar seminar) {
         this.x = x;
@@ -48,24 +51,27 @@ class BintreeNode {
 
 
 /**
- * The type Seminar node.
+ * The type World test.
+ *
+ * @author Aayush Bagrecha
+ * @author Yash Shrikant
+ * @version 1.0
  */
 class SeminarNode {
     /**
      * The Seminar.
      */
-    Seminar seminar;
+    protected Seminar seminar;
     /**
      * The Next.
      */
-    SeminarNode next;
-
+    protected SeminarNode next;
 
     /**
      * Instantiates a new Seminar node.
      *
      * @param seminar
-     *     the seminar
+     *            the seminar
      */
     public SeminarNode(Seminar seminar) {
         this.seminar = seminar;
@@ -77,11 +83,11 @@ class SeminarNode {
      * Insert.
      *
      * @param seminar
-     *     the seminar
+     *            the seminar
      */
-// Insert a seminar at the end of the linked list
-    public void insert(Seminar seminar) {
-        SeminarNode newNode = new SeminarNode(seminar);
+    // Insert a seminar at the end of the linked list
+    public void insert(Seminar seminarToInsert) {
+        SeminarNode newNode = new SeminarNode(seminarToInsert);
         SeminarNode current = this;
         while (current.next != null) {
             current = current.next;
@@ -102,7 +108,7 @@ class SeminarNode {
             output.append(current.seminar.id()).append(" ");
             current = current.next;
         }
-//        output.append("\n");
+        // output.append("\n");
         return output;
     }
 
@@ -111,10 +117,10 @@ class SeminarNode {
      * Search seminar.
      *
      * @param id
-     *     the id
+     *            the id
      * @return the seminar
      */
-// Search for a seminar with a specific ID in the linked list
+    // Search for a seminar with a specific ID in the linked list
     public Seminar search(int id) {
         SeminarNode current = this;
         while (current != null) {
@@ -131,10 +137,10 @@ class SeminarNode {
      * Delete boolean.
      *
      * @param id
-     *     the id
+     *            the id
      * @return the boolean
      */
-// Delete a seminar with a specific ID from the linked list
+    // Delete a seminar with a specific ID from the linked list
     public boolean delete(int id) {
         SeminarNode current = this;
         SeminarNode prev = null;

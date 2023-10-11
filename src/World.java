@@ -13,12 +13,11 @@ class World {
 
     private int worldSize;
 
-
     /**
      * Constructs a new World object
      *
      * @param worldSize
-     *     The world size for range of x and y coordinates.
+     *            The world size for range of x and y coordinates.
      */
     public World(int worldSize) {
         this.worldSize = worldSize;
@@ -36,18 +35,21 @@ class World {
      * DateBST, and KeywordsBST (Binary Search Trees) appropriately.
      *
      * @param scanner
-     *     The Scanner object from which seminar data is read.
+     *            The Scanner object from which seminar data is read.
      * @param idBST
-     *     The Binary Search Tree for storing seminars by ID.
+     *            The Binary Search Tree for storing seminars by ID.
      * @param costBST
-     *     The Binary Search Tree for storing seminars by cost.
+     *            The Binary Search Tree for storing seminars by cost.
      * @param dateBST
-     *     The Binary Search Tree for storing seminars by date.
+     *            The Binary Search Tree for storing seminars by date.
      * @param keywordsBST
-     *     The Binary Search Tree for storing seminars by keywords.
+     *            The Binary Search Tree for storing seminars by keywords.
+     * @param bintree
+     *            the bintree
      * @throws Exception
-     *     If there is an issue with parsing or if the coordinates fall outside
-     *     the valid range.
+     *             If there is an issue with parsing or if the coordinates fall
+     *             outside
+     *             the valid range.
      */
     public void addAndInsertSeminar(
         Scanner scanner,
@@ -55,7 +57,8 @@ class World {
         CostBST costBST,
         DateBST dateBST,
         KeywordsBST keywordsBST,
-        Bintree bintree) throws Exception {
+        Bintree bintree)
+        throws Exception {
 
         int id = Integer.parseInt(scanner.nextLine().trim());
         String title = scanner.nextLine().trim();
@@ -73,15 +76,14 @@ class World {
 
         // Check if the coordinates are within the valid range
         if (x < 0 || x >= worldSize || y < 0 || y >= worldSize) {
-            System.out.println(
-                "Insert FAILED - Bad x, y coordinates: " + x + ", " + y);
+            System.out.println("Insert FAILED - Bad x, y coordinates: " + x
+                + ", " + y);
             // Do not add the seminar
             return;
         }
 
-        Seminar seminar =
-            new Seminar(id, title, dateTime, length, x, y, cost, keywords,
-                description);
+        Seminar seminar = new Seminar(id, title, dateTime, length, x, y, cost,
+            keywords, description);
 
         // Insert seminar into all BSTs
         if (idBST.insertSeminar(id, seminar)) {
@@ -92,8 +94,8 @@ class World {
 
             System.out.println("Successfully inserted record with ID " + id);
             System.out.println("ID: " + id + ", Title: " + title);
-            System.out.println(
-                "Date: " + dateTime + ", Length: " + length + ", X: " + x + ", Y: " + y + ", Cost: " + cost);
+            System.out.println("Date: " + dateTime + ", Length: " + length
+                + ", X: " + x + ", Y: " + y + ", Cost: " + cost);
             System.out.println("Description: " + description);
             System.out.println("Keywords: " + String.join(", ", keywords));
 
@@ -106,12 +108,12 @@ class World {
      * Filters and processes a line of keywords from the input.
      *
      * @param inputLine
-     *     The input line containing keywords separated by spaces.
+     *            The input line containing keywords separated by spaces.
      * @return An array of keywords extracted from the input line.
      */
     public static String[] filterKeywords(String inputLine) {
-        return Arrays.stream(inputLine.split(" "))
-            .filter(keyword -> !keyword.isEmpty()).toArray(String[]::new);
+        return Arrays.stream(inputLine.split(" ")).filter(keyword -> !keyword
+            .isEmpty()).toArray(String[]::new);
     }
 
 
@@ -120,7 +122,9 @@ class World {
      * input.
      *
      * @param scanner
-     *     The scanner used to read the seminar ID for searching.
+     *            The scanner used to read the seminar ID for searching.
+     * @param idBST
+     *            the id bst
      */
     public void searchSeminarID(Scanner scanner, IDBST idBST) {
         int id = Integer.parseInt(scanner.nextLine().trim());
@@ -130,8 +134,8 @@ class World {
             System.out.println(seminar);
         }
         else {
-            System.out.println(
-                "Search FAILED -- There is no record with ID " + id);
+            System.out.println("Search FAILED -- There is no record with ID "
+                + id);
         }
     }
 
@@ -141,9 +145,9 @@ class World {
      * input.
      *
      * @param scanner
-     *     The scanner used to read the seminar ID for searching.
+     *            The scanner used to read the seminar ID for searching.
      * @param keywordsBST
-     *     The existing KeywordsBST instance containing seminar data.
+     *            The existing KeywordsBST instance containing seminar data.
      */
     public void searchSeminarKeyword(Scanner scanner, KeywordsBST keywordsBST) {
         String keywordValue = scanner.next().trim();
@@ -156,13 +160,15 @@ class World {
      * input.
      *
      * @param scanner
-     *     The scanner used to read the seminar ID for searching.
+     *            The scanner used to read the seminar ID for searching.
+     * @param costBST
+     *            the cost bst
      */
     public void searchSeminarCost(Scanner scanner, CostBST costBST) {
         int cost1 = Integer.parseInt(scanner.next().trim());
         int cost2 = Integer.parseInt(scanner.next().trim());
-        System.out.println(
-            "Seminars with costs in range " + cost1 + " to " + cost2 + ":");
+        System.out.println("Seminars with costs in range " + cost1 + " to "
+            + cost2 + ":");
         costBST.searchByCost(cost1, cost2);
     }
 
@@ -171,32 +177,34 @@ class World {
      * Searches for seminars within a specified date range.
      *
      * @param scanner
-     *     The scanner used to read start and end dates for the search.
+     *            The scanner used to read start and end dates for the search.
      * @param dateBST
-     *     The existing DateBST instance containing seminar data.
+     *            The existing DateBST instance containing seminar data.
      */
     public void searchSeminarDate(Scanner scanner, DateBST dateBST) {
         String date1 = scanner.next().trim();
         String date2 = scanner.next().trim();
-        System.out.println(
-            "Seminars with dates in range " + date1 + " to " + date2 + ":");
+        System.out.println("Seminars with dates in range " + date1 + " to "
+            + date2 + ":");
         dateBST.searchByDate(date1, date2);
     }
 
 
+    /**
+     * Search seminar location.
+     *
+     * @param scanner
+     *            the scanner
+     * @param bintree
+     *            the bintree
+     */
     public void searchSeminarLocation(Scanner scanner, Bintree bintree) {
         int x = Integer.parseInt(scanner.next().trim());
         int y = Integer.parseInt(scanner.next().trim());
         int radius = Integer.parseInt(scanner.next().trim());
 
-        System.out.println(
-            "Seminars with location with coordinates " + x + " and " + y + ":");
-
-//        Seminar seminars = bintree.search(x, y);
-//
-//        if (seminars == null) {
-//            System.out.println();
-//        }
+        System.out.println("Seminars with location with coordinates " + x
+            + " and " + y + ":");
     }
 
 
@@ -205,7 +213,8 @@ class World {
      * by ID.
      *
      * @param bst
-     *     The Binary Search Tree (BST) containing seminars ordered by ID.
+     *            The Binary Search Tree (BST) containing seminars ordered by
+     *            ID.
      */
     public void printID(IDBST bst) {
 
@@ -218,7 +227,8 @@ class World {
      * by Cost.
      *
      * @param bst
-     *     The Binary Search Tree (BST) containing seminars ordered by Cost.
+     *            The Binary Search Tree (BST) containing seminars ordered by
+     *            Cost.
      */
     public void printCost(CostBST bst) {
 
@@ -231,7 +241,8 @@ class World {
      * by Date.
      *
      * @param bst
-     *     The Binary Search Tree (BST) containing seminars ordered by Date.
+     *            The Binary Search Tree (BST) containing seminars ordered by
+     *            Date.
      */
     public void printDate(DateBST bst) {
 
@@ -244,7 +255,8 @@ class World {
      * by Keyword.
      *
      * @param bst
-     *     The Binary Search Tree (BST) containing seminars ordered by Keyword.
+     *            The Binary Search Tree (BST) containing seminars ordered by
+     *            Keyword.
      */
     public void printKeywords(KeywordsBST bst) {
 
@@ -252,6 +264,12 @@ class World {
     }
 
 
+    /**
+     * Print location.
+     *
+     * @param bintree
+     *            the bintree
+     */
     public void printLocation(Bintree bintree) {
         bintree.print();
     }
@@ -262,13 +280,23 @@ class World {
      * ID.
      *
      * @param scanner
-     *     The Scanner object used for input to read the ID of the seminar to be
-     *     deleted.
+     *            The Scanner object used for input to read the ID of the
+     *            seminar to be
+     *            deleted.
      * @param bst
-     *     The IDBST object representing the Binary Search Tree from which the
-     *     seminar will be deleted.
+     *            The IDBST object representing the Binary Search Tree from
+     *            which the
+     *            seminar will be deleted.
+     * @param cost
+     *            the cost
+     * @param date
+     *            the date
+     * @param keyword
+     *            the keyword
+     * @param bintree
+     *            the bintree
      * @throws NumberFormatException
-     *     If the input ID cannot be parsed as an integer.
+     *             If the input ID cannot be parsed as an integer.
      */
     public void delete(
         Scanner scanner,
@@ -281,8 +309,8 @@ class World {
         int id = Integer.parseInt(scanner.nextLine().trim());
         Seminar record = bst.searchByID(id);
         if (record == null) {
-            System.out.println(
-                "Delete FAILED -- There is no record with ID " + id);
+            System.out.println("Delete FAILED -- There is no record with ID "
+                + id);
         }
         else {
             bst.delete(id);
@@ -291,8 +319,8 @@ class World {
             keyword.delete(record.keywords());
             bintree.delete(id);
 
-            System.out.println(
-                "Record with ID " + id + " successfully deleted from the database");
+            System.out.println("Record with ID " + id
+                + " successfully deleted from the database");
         }
     }
 

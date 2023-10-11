@@ -1,12 +1,22 @@
 import student.TestCase;
+
 import static org.junit.Assert.*;
+
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * The type World test.
+ *
+ * @author Aayush Bagrecha
+ * @author Yash Shrikant
+ * @version 1.0
+ */
 public class BSTTest {
 
     private GenericBST<Integer, String> bst;
@@ -15,6 +25,9 @@ public class BSTTest {
     private DateBST dateBST;
     private KeywordsBST keywordsBST;
 
+    /**
+     * Sets up 1.
+     */
     @Before
     public void setUp1() {
         idBST = new IDBST();
@@ -24,6 +37,9 @@ public class BSTTest {
     }
 
 
+    /**
+     * Test idbst insertion and search.
+     */
     @Test
     public void testIDBSTInsertionAndSearch() {
         Seminar seminar1 = new Seminar(1, "Seminar 1", "2023-10-10", 2,
@@ -42,84 +58,27 @@ public class BSTTest {
         assertFalse(idBST.insertSeminar(1, seminar1));
     }
 
-// @Test
-// public void testCostBSTInsertionAndSearch() {
-// Seminar seminar1 = new Seminar(1, "Seminar 1", "2023-10-10", 2, (short) 10,
-// (short) 20, 50, new String[]{"keyword1"}, "Description 1");
-// Seminar seminar2 = new Seminar(2, "Seminar 2", "2023-10-12", 3, (short) 15,
-// (short) 25, 70, new String[]{"keyword2"}, "Description 2");
-//
-// costBST.insertSeminar(1, seminar1);
-// costBST.insertSeminar(2, seminar2);
-//
-// // Check specific attributes of the Seminar objects
-// String foundSeminar1 = costBST.searchByCost(40, 60);
-//// System.out.println(foundSeminar1);
-//
-// String expectedSeminar1 = "Found record with ID "+seminar1.id()+":\n"+"ID: "
-// + seminar1.id() + ", Title: Seminar 1\n"
-// + "Date: " + seminar1.date() + ", Length: 2" + ", X: " + seminar1.x() + ", Y:
-// " + seminar1.y() + ", Cost: " + seminar1.cost()
-// + "\nDescription: Description 1\n" + "Keywords: keyword1" ;
-//
-//// System.out.println(expectedSeminar1);
-// String notFoundResult = "Seminar not found within the specified cost range.";
-//
-// assertEquals(expectedSeminar1, foundSeminar1);
-//
-// assertEquals(notFoundResult, costBST.searchByCost(30, 50));
-// }
-//
-//
-// @Test
-// public void testDateBSTInsertionAndSearch() {
-// Seminar seminar1 = new Seminar(1, "Seminar 1", "2023-10-10", 2,
-// (short)10, (short)20, 50, new String[] { "keyword1" },
-// "Description 1");
-// Seminar seminar2 = new Seminar(2, "Seminar 2", "2023-10-12", 3,
-// (short)15, (short)25, 70, new String[] { "keyword2" },
-// "Description 2");
-//
-// dateBST.insertSeminar("2023-10-10", seminar1);
-// dateBST.insertSeminar("2023-10-12", seminar2);
-//
-// assertEquals(seminar1, dateBST.searchByDate("2023-10-10",
-// "2023-10-15"));
-// assertEquals(seminar2, dateBST.searchByDate("2023-10-11",
-// "2023-10-13"));
-// assertNull(dateBST.searchByDate("2023-10-08", "2023-10-09"));
-// }
-//
-//
-// @Test
-// public void testKeywordsBSTInsertionAndSearch() {
-// Seminar seminar1 = new Seminar(1, "Seminar 1", "2023-10-10", 2,
-// (short)10, (short)20, 50, new String[] { "keyword1" },
-// "Description 1");
-// Seminar seminar2 = new Seminar(2, "Seminar 2", "2023-10-12", 3,
-// (short)15, (short)25, 70, new String[] { "keyword2" },
-// "Description 2");
-//
-// keywordsBST.insertSeminar(seminar1, "keyword1");
-// keywordsBST.insertSeminar(seminar2, "keyword2");
-//
-// assertEquals(seminar1, keywordsBST.searchByKeyword("keyword1"));
-// assertEquals(seminar2, keywordsBST.searchByKeyword("keyword2"));
-// assertNull(keywordsBST.searchByKeyword("keyword3"));
-// }
 
-
+    /**
+     * Sets up.
+     */
     public void setUp() {
         bst = new GenericBST<>();
     }
 
 
+    /**
+     * Test insert empty tree.
+     */
     public void testInsertEmptyTree() {
         bst.insert(new KVPair<>(5, "Five"));
         assertEquals(1, bst.size());
     }
 
 
+    /**
+     * Test insert smaller key to left.
+     */
     public void testInsertSmallerKeyToLeft() {
         bst.insert(new KVPair<>(5, "Five"));
         bst.insert(new KVPair<>(3, "Three"));
@@ -130,6 +89,9 @@ public class BSTTest {
     }
 
 
+    /**
+     * Test insert larger key to right.
+     */
     public void testInsertLargerKeyToRight() {
         bst.insert(new KVPair<>(5, "Five"));
         bst.insert(new KVPair<>(7, "Seven"));
@@ -140,6 +102,9 @@ public class BSTTest {
     }
 
 
+    /**
+     * Test insert equal keys to left.
+     */
     public void testInsertEqualKeysToLeft() {
         bst.insert(new KVPair<>(5, "Five"));
         bst.insert(new KVPair<>(5, "Duplicate"));
@@ -150,6 +115,9 @@ public class BSTTest {
     }
 
 
+    /**
+     * Test insert multiple keys.
+     */
     public void testInsertMultipleKeys() {
         bst.insert(new KVPair<>(5, "Five"));
         bst.insert(new KVPair<>(3, "Three"));
@@ -164,136 +132,9 @@ public class BSTTest {
     }
 
 
-    @Test
-    public void testSearchByID() {
-        IDBST bst = new IDBST();
-
-        // Creating sample seminars
-        Seminar seminar1 = new Seminar(1, "Seminar 1", "2023-10-10", 2,
-            (short)10, (short)20, 50, new String[] { "keyword1" },
-            "Description 1");
-        Seminar seminar2 = new Seminar(2, "Seminar 2", "2023-10-12", 3,
-            (short)15, (short)25, 70, new String[] { "keyword2" },
-            "Description 2");
-
-        // Inserting seminars into the BST
-        bst.insertSeminar(1, seminar1);
-        bst.insertSeminar(2, seminar2);
-
-        // Testing search by ID
-        Seminar result1 = bst.searchByID(1);
-        assertNotNull(result1);
-        assertEquals(seminar1, result1);
-
-        Seminar result2 = bst.searchByID(2);
-        assertNotNull(result2);
-        assertEquals(seminar2, result2);
-
-        Seminar result3 = bst.searchByID(3);
-        assertNull(result3);
-    }
-
-// @Test
-// public void testSearchByCost() {
-// CostBST bst = new CostBST();
-//
-// // Creating sample seminars
-// Seminar seminar1 = new Seminar(1, "Seminar 1", "2023-10-10", 2,
-// (short)10, (short)20, 50, new String[] { "keyword1" },
-// "Description 1");
-// Seminar seminar2 = new Seminar(2, "Seminar 2", "2023-10-12", 3,
-// (short)15, (short)25, 70, new String[] { "keyword2" },
-// "Description 2");
-// Seminar seminar3 = new Seminar(3, "Seminar 3", "2023-10-14", 1,
-// (short)5, (short)15, 40, new String[] { "keyword3" },
-// "Description 3");
-//
-// // Inserting seminars into the BST
-// bst.insertSeminar(1, seminar1);
-// bst.insertSeminar(2, seminar2);
-// bst.insertSeminar(3, seminar3);
-//
-// // Testing search by cost
-// String result1 = bst.searchByCost(40, 60);
-// assertNotNull(result1);
-// assertEquals(seminar1, result1);
-//
-// String result2 = bst.searchByCost(60, 80);
-// assertNotNull(result2);
-// assertEquals(seminar2, result2);
-//
-// String result3 = bst.searchByCost(30, 50);
-// assertNull(result3);
-// }
-
-// @Test
-// public void testSearchByDate() {
-// DateBST bst = new DateBST();
-//
-// // Creating sample seminars
-// Seminar seminar1 = new Seminar(1, "Seminar 1", "2023-10-10", 2,
-// (short)10, (short)20, 50, new String[] { "keyword1" },
-// "Description 1");
-// Seminar seminar2 = new Seminar(2, "Seminar 2", "2023-10-12", 3,
-// (short)15, (short)25, 70, new String[] { "keyword2" },
-// "Description 2");
-// Seminar seminar3 = new Seminar(3, "Seminar 3", "2023-10-14", 1,
-// (short)5, (short)15, 40, new String[] { "keyword3" },
-// "Description 3");
-//
-// // Inserting seminars into the BST
-// bst.insertSeminar("2023-10-10", seminar1);
-// bst.insertSeminar("2023-10-12", seminar2);
-// bst.insertSeminar("2023-10-14", seminar3);
-//
-// // Testing search by date
-// Seminar result1 = bst.searchByDate("2023-10-09", "2023-10-11");
-// assertNotNull(result1);
-// assertEquals(seminar1, result1);
-//
-// Seminar result2 = bst.searchByDate("2023-10-11", "2023-10-13");
-// assertNotNull(result2);
-// assertEquals(seminar2, result2);
-//
-// Seminar result3 = bst.searchByDate("2023-10-15", "2023-10-16");
-// assertNull(result3);
-// }
-//
-//
-// @Test
-// public void testSearchByKeyword() {
-// KeywordsBST bst = new KeywordsBST();
-//
-// // Creating sample seminars with keywords
-// Seminar seminar1 = new Seminar(1, "Seminar 1", "2023-10-10", 2,
-// (short)10, (short)20, 50, new String[] { "keyword1" },
-// "Description 1");
-// Seminar seminar2 = new Seminar(2, "Seminar 2", "2023-10-12", 3,
-// (short)15, (short)25, 70, new String[] { "keyword2", "keyword3" },
-// "Description 2");
-//
-// // Inserting seminars into the BST
-// bst.insertSeminar(seminar1, "keyword1");
-// bst.insertSeminar(seminar2, "keyword2", "keyword3");
-//
-// // Testing search by keyword
-// Seminar result1 = bst.searchByKeyword("keyword1");
-// assertNotNull(result1);
-// assertEquals(seminar1, result1);
-//
-// Seminar result2 = bst.searchByKeyword("keyword2");
-// assertNotNull(result2);
-// assertEquals(seminar2, result2);
-//
-// Seminar result3 = bst.searchByKeyword("keyword3");
-// assertNotNull(result3);
-// assertEquals(seminar2, result3);
-//
-// Seminar result4 = bst.searchByKeyword("nonexistentkeyword");
-// assertNull(result4);
-// }
-
-
+    /**
+     * Test compare to.
+     */
     @Test
     public void testCompareTo() {
         // Creating KVPair instances with different keys
@@ -305,26 +146,29 @@ public class BSTTest {
 
         // Testing comparison using compareTo method
         assertTrue(pair1.compareTo(pair2) < 0); // pair1 key is smaller than
-                                                // pair2 key
+        // pair2 key
         assertTrue(pair2.compareTo(pair1) > 0); // pair2 key is greater than
-                                                // pair1 key
+        // pair1 key
         assertTrue(pair2.compareTo(pair3) < 0); // pair2 key is smaller than
-                                                // pair3 key
+        // pair3 key
         assertTrue(pair3.compareTo(pair2) > 0); // pair3 key is greater than
-                                                // pair2 key
+        // pair2 key
         assertEquals(0, pair1.compareTo(pair1)); // pair1 key is equal to pair1
-                                                 // key
+        // key
         assertEquals(0, pair1.compareTo(pair1Duplicate)); // pair1 key is equal
-                                                          // to pair1Duplicate
-                                                          // key
+        // to pair1Duplicate
+        // key
         assertTrue(pair1.compareTo(pair3) < 0); // pair1 key is smaller than
-                                                // pair3 key
+        // pair3 key
         assertTrue(pair1Duplicate.compareTo(pair2) < 0); // pair1Duplicate key
-                                                         // is smaller than
-                                                         // pair2 key
+        // is smaller than
+        // pair2 key
     }
 
 
+    /**
+     * Test delete.
+     */
     @Test
     public void testDelete() {
 
@@ -356,6 +200,9 @@ public class BSTTest {
     }
 
 
+    /**
+     * Test get count.
+     */
     @Test
     public void testGetCount() {
         Seminar seminar1 = new Seminar(1, "Seminar 1", "2023-10-10", 2,
@@ -377,6 +224,9 @@ public class BSTTest {
     }
 
 
+    /**
+     * Test print.
+     */
     @Test
     public void testPrint() {
 

@@ -1,9 +1,9 @@
 /**
- * Seminar class with getter methods for key fields. There is probably no
- * good reason why you would want to modify this class for your project.
+ * The type World test.
  *
- * @author CS3114/CS5040 staff
- * @version July 2023, last updated September 2023
+ * @author Aayush Bagrecha
+ * @author Yash Shrikant
+ * @version 1.0
  */
 
 public class Seminar {
@@ -18,6 +18,7 @@ public class Seminar {
     private int id; // Seminar ID
 
     // ----------------------------------------------------------
+
     /**
      * Dummy seminar constructor
      */
@@ -29,24 +30,24 @@ public class Seminar {
     /**
      * Create a new Seminar object from the field data
      *
+     * @param idin
+     *            input ID
      * @param tin
      *            input title
      * @param datein
      *            input date
      * @param lin
      *            input length
-     * @param kin
-     *            input keywords
      * @param xin
      *            input x coord
      * @param yin
      *            input y coord
-     * @param descin
-     *            input description
      * @param cin
      *            input cost
-     * @param idin
-     *            input ID
+     * @param kin
+     *            input keywords
+     * @param descin
+     *            input description
      */
     public Seminar(
         int idin,
@@ -69,66 +70,72 @@ public class Seminar {
         desc = descin;
     }
 
-
     // ----------------------------------------------------------
+
+
     /**
      * Returns the seminar ID field
-     * 
+     *
      * @return the ID field for the seminar
      */
     public int id() {
         return id;
     }
 
-
     // ----------------------------------------------------------
+
+
     /**
      * Return the seminar date
-     * 
+     *
      * @return the date field for the seminar
      */
     public String date() {
         return date;
     }
 
-
     // ----------------------------------------------------------
+
+
     /**
      * Return the seminar date
-     * 
+     *
      * @return the date field for the seminar
      */
     public int cost() {
         return cost;
     }
 
-
     // ----------------------------------------------------------
+
+
     /**
      * Return the seminar keywords
-     * 
+     *
      * @return the keywords field for the seminar
      */
     public String[] keywords() {
         return keywords;
     }
 
-
     // ----------------------------------------------------------
+
+
     /**
      * Return the seminar x coordinate
-     * 
+     *
      * @return the x coordinate field for the seminar
      */
     public int x() {
         return x;
     }
 
-
     // ----------------------------------------------------------
+
+
     /**
      * Return the seminar y coordinate
-     * 
+     *
      * @return the y coordinate field for the seminar
      */
     public int y() {

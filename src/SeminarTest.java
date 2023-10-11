@@ -1,11 +1,13 @@
 import student.TestCase;
 
 // -------------------------------------------------------------------------
+
 /**
- * Test the Seminar class
+ * The type World test.
  *
- * @author CS3114/CS5040 staff
- * @version July 2023, last updated September 2023
+ * @author Aayush Bagrecha
+ * @author Yash Shrikant
+ * @version 1.0
  */
 public class SeminarTest extends TestCase {
     /**
@@ -45,8 +47,9 @@ public class SeminarTest extends TestCase {
 
     /**
      * Check the serialization/deserialization process
-     * 
+     *
      * @throws Exception
+     *             the exception
      */
     public void testSeminarDS() throws Exception {
         String[] keywords = { "Good", "Bad", "Ugly" };
