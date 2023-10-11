@@ -456,13 +456,8 @@ class IDBST extends GenericBST<Integer, Seminar> {
         KVPair<Integer, Seminar> data = new KVPair<>(id, null);
 
         if (contains(data)) {
-            System.out.println(
-                "Record with ID " + id + " successfully deleted from the database");
             remove(data);
         }
-        else
-            System.out.println(
-                "Delete FAILED -- There is no record with ID " + id);
     }
 
 }

@@ -89,7 +89,8 @@ public class SemSearch {
             return;
         }
         catch (Exception e) {
-            System.err.println("File not found.");
+            System.out.println(
+                "Exception " + e + " occurred while reading file");
             return;
         }
     }
@@ -110,14 +111,11 @@ public class SemSearch {
     /**
      * Parses a text file containing operations and data related to a "World"
      * and populates various Binary Search Trees (BSTs) with the extracted
-     * information.
-     *
-     *
-     * For "insert" operations, data is used to create and insert seminars into
-     * multiple Binary Search Trees, such as IDBST, CostBST, DateBST, and
-     * KeywordsBST, depending on the operation's parameters. If an unknown
-     * operation is encountered, an error message is displayed, and the current
-     * line is skipped.
+     * information. For "insert" operations, data is used to create and insert
+     * seminars into multiple Binary Search Trees, such as IDBST, CostBST,
+     * DateBST, and KeywordsBST, depending on the operation's parameters. If an
+     * unknown operation is encountered, an error message is displayed, and the
+     * current line is skipped.
      *
      * @param file
      *     The File object representing the text file to be parsed.
@@ -177,9 +175,9 @@ public class SemSearch {
                                 world.searchSeminarDate(scanner, dateBST);
                                 break;
 
-//                            case "location":
-//                                world.searchSeminarLocation(scanner, bintree);
-//                                break;
+                            case "location":
+                                world.searchSeminarLocation(scanner, bintree);
+                                break;
                         }
                         break;
 

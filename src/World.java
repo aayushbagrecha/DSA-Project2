@@ -280,11 +280,20 @@ class World {
 
         int id = Integer.parseInt(scanner.nextLine().trim());
         Seminar record = bst.searchByID(id);
-        bst.delete(id);
-        cost.delete(record.cost());
-        date.delete(record.date());
-        keyword.delete(record.keywords());
-        bintree.delete(id);
+        if (record == null) {
+            System.out.println(
+                "Delete FAILED -- There is no record with ID " + id);
+        }
+        else {
+            bst.delete(id);
+            cost.delete(record.cost());
+            date.delete(record.date());
+            keyword.delete(record.keywords());
+            bintree.delete(id);
+
+            System.out.println(
+                "Record with ID " + id + " successfully deleted from the database");
+        }
     }
 
 }

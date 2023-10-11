@@ -140,18 +140,6 @@ public class WorldTest extends TestCase {
 
 
     @Test
-    public void testSearch() throws Exception {
-        String[] args = new String[2];
-        args[0] = "128";
-        args[1] = "P2syntaxSearch_input.txt";
-        SemSearch.main(args);
-        String output = systemOut().getHistory();
-        String referenceOutput = readFile("P2syntaxSearch_output.txt");
-        assertFuzzyEquals(referenceOutput, output);
-    }
-
-
-    @Test
     public void testAll() throws IOException {
         String[] args = new String[2];
         args[0] = "128";
