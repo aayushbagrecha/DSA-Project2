@@ -667,11 +667,19 @@ class DateBST extends GenericBST<String, Seminar> {
         if (nodeDate.compareTo(date1) >= 0 && nodeDate.compareTo(date2) <= 0) {
             // The current node's date is within the specified range
             System.out.println(node.data.getValue());
+            searchByDate(node.left, date1, date2);
+            searchByDate(node.right, date1, date2);
         }
 
-        // Search in both left and right subtrees regardless of the comparison
-        searchByDate(node.left, date1, date2);
-        searchByDate(node.right, date1, date2);
+        // if node value is greater than given value then always go to the left
+        if (nodeDate.compareTo(date1) < 0) {
+            searchByDate(node.left, date1, date2);
+        }
+
+        // if node value is lesser, then always go to the right
+        if (nodeDate.compareTo(date2) >= 0) {
+            searchByDate(node.right, date1, date2);
+        }
     }
 
 
